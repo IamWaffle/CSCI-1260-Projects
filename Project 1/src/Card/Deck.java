@@ -22,7 +22,7 @@ package Card;
  */
 public class Deck
 {
-	private Card [ ]	deck;
+	private Card [ ]	deck	= new Card [52];
 	private int			nextCard;
 
 	/**
@@ -35,11 +35,14 @@ public class Deck
 	 */
 	public Deck ( )
 	{
-
+		for (int i = 0; i < deck.length; i++ )
+		{
+			deck [i] = new Card (i);
+		}
 	}
 
 	/**
-	 * Arg Constructor
+	 * Arg Copy Constructor
 	 *
 	 * <hr>
 	 * Date created: Feb 26, 2018
@@ -48,7 +51,6 @@ public class Deck
 	 */
 	public Deck (Deck existingDeck)
 	{
-
 	}
 
 	/**

@@ -11,10 +11,6 @@
 
 package Card;
 
-import Card.Card;
-import Card.Face;
-import Card.Suit;
-
 /**
  * To create a card
  *
