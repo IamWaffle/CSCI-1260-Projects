@@ -11,6 +11,8 @@
 
 package Card;
 
+import java.util.Arrays;
+
 /**
  * Enter type purpose here
  *
@@ -49,8 +51,13 @@ public class Deck
 	 *
 	 * @param Deck existingDeck
 	 */
+
 	public Deck (Deck existingDeck)
 	{
+		for (int i = 0; i < deck.length; i++ )
+		{
+			deck [i] = new Card (existingDeck.deck [i]);
+		}
 	}
 
 	/**
@@ -109,7 +116,15 @@ public class Deck
 
 	public String toString ( )
 	{
-		return null;
+		String [ ] output = new String [52];
+
+		for (int i = 0; i < deck.length; i++ )
+		{
+			output  [i] = new Card (i).toString ( ) + "\n";
+		}
+
+		return Arrays.toString (output).replace (",", "").replace ("[", " ").replace ("]", "");
+		
 	}
 
 }

@@ -38,7 +38,7 @@ public class DeckDriver
 	public static void main (String [ ] args)
 	{
 		Deck temp = new Deck ( );
-
+		Deck temp2 = new Deck (temp);
 		System.out.println (temp.toString ( ));
 
 	}
