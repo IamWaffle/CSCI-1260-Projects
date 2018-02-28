@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * Enter type purpose here
+ * Create a class that uses the Card class and emulates a Deck of cards.
  *
  * <hr>
  * Date created: Feb 26, 2018
@@ -88,7 +88,7 @@ public class Deck
 
 		nextCard = 0;
 	}
-	
+
 	/**
 	 * shuffle shuffles the deck according to how many times the user wants.
 	 *
@@ -97,15 +97,16 @@ public class Deck
 	 *
 	 * @param int shuffleTimes
 	 */
-	
+
 	public void shuffle (int shuffleTimes)
 	{
-		for (int i = 0; i < shuffleTimes; i++) {
+		for (int i = 0; i < shuffleTimes; i++ )
+		{
 			for (int m = 0; m < deck.length; m++ )
 			{
 				Random rand = new Random ( );
 				int randomNum = rand.nextInt (deck.length - 1);
-				
+
 				Card temp = new Card (deck [m]);
 				deck [m] = new Card (deck [randomNum]);
 				deck [randomNum] = new Card (temp);
@@ -146,16 +147,22 @@ public class Deck
 	 * Date created: Feb 26, 2018
 	 *
 	 * @param int handSize
-	 * @return Card
+	 * @return String
 	 */
 
 	public String dealAHand (int handSize)
 	{
-		return null;
+		String[] output = new String[handSize];
+		
+		for (int i = 0; i < output.length; i++) {
+			output[i] = new Card (dealACard()).toString ( ) + "\n";
+		}
+		
+		return Arrays.toString (output).replace (",", "").replace ("[", " ").replace ("]", "");
 	}
 
 	/**
-	 * toString converts into a readable format
+	 * toString converts deck array into a readable format with help from toString from Card class.
 	 *
 	 * <hr>
 	 * Date created: Feb 26, 2018

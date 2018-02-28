@@ -73,6 +73,13 @@ public class DeckDriver
 		
 		System.out.println (temp);
 		
+		for (int i = 0; i < 20; i++ )
+		{
+			System.out.println ( );
+		}
+		
+		System.out.println (temp.dealAHand (5));
+		
 	}
 
 }
