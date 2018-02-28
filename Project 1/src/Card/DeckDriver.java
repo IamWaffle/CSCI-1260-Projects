@@ -39,8 +39,40 @@ public class DeckDriver
 	{
 		Deck temp = new Deck ( );
 		Deck temp2 = new Deck (temp);
-		System.out.println (temp.toString ( ));
 
+		System.out.println (temp);
+
+		for (int i = 0; i < 20; i++ )
+		{
+			System.out.println ( );
+		}
+
+		temp.shuffle ( );
+		temp.shuffle ( );
+		temp.shuffle ( );
+
+		System.out.println (temp);
+		
+		for (int i = 0; i < 20; i++ )
+		{
+			System.out.println ( );
+		}
+		
+		
+		for (int i = 0; i < 60; i++ )
+		{
+			System.out.println ("Delt Card:" + temp.dealACard ( ));
+		}
+		
+		for (int i = 0; i < 20; i++ )
+		{
+			System.out.println ( );
+		}
+		
+		temp.shuffle (5);
+		
+		System.out.println (temp);
+		
 	}
 
 }

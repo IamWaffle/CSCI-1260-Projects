@@ -12,6 +12,7 @@
 package Card;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * Enter type purpose here
@@ -41,6 +42,8 @@ public class Deck
 		{
 			deck [i] = new Card (i);
 		}
+
+		nextCard = 0;
 	}
 
 	/**
@@ -61,7 +64,7 @@ public class Deck
 	}
 
 	/**
-	 * shuffle shuffles the deck
+	 * shuffle shuffles the deck once
 	 *
 	 * <hr>
 	 * Date created: Feb 26, 2018
@@ -72,6 +75,45 @@ public class Deck
 	public void shuffle ( )
 	{
 
+		for (int i = 0; i < deck.length; i++ )
+		{
+			Random rand = new Random ( );
+			int randomNum = rand.nextInt (deck.length - 1);
+
+			Card temp = new Card (deck [i]);
+			deck [i] = new Card (deck [randomNum]);
+			deck [randomNum] = new Card (temp);
+
+		}
+
+		nextCard = 0;
+	}
+	
+	/**
+	 * shuffle shuffles the deck according to how many times the user wants.
+	 *
+	 * <hr>
+	 * Date created: Feb 26, 2018
+	 *
+	 * @param int shuffleTimes
+	 */
+	
+	public void shuffle (int shuffleTimes)
+	{
+		for (int i = 0; i < shuffleTimes; i++) {
+			for (int m = 0; m < deck.length; m++ )
+			{
+				Random rand = new Random ( );
+				int randomNum = rand.nextInt (deck.length - 1);
+				
+				Card temp = new Card (deck [m]);
+				deck [m] = new Card (deck [randomNum]);
+				deck [randomNum] = new Card (temp);
+
+			}
+
+			nextCard = 0;
+		}
 	}
 
 	/**
@@ -86,8 +128,15 @@ public class Deck
 
 	public Card dealACard ( )
 	{
-		return null;
+		Card deltCard = new Card (deck [nextCard]);
+		nextCard++ ;
 
+		if (nextCard >= deck.length)
+		{
+			nextCard = deck.length - 1;
+		}
+
+		return deltCard;
 	}
 
 	/**
@@ -116,15 +165,15 @@ public class Deck
 
 	public String toString ( )
 	{
-		String [ ] output = new String [52];
+		String [ ] output = new String [deck.length];
 
 		for (int i = 0; i < deck.length; i++ )
 		{
-			output  [i] = new Card (i).toString ( ) + "\n";
+			output [i] = new Card (deck [i]).toString ( ) + "\n";
 		}
 
 		return Arrays.toString (output).replace (",", "").replace ("[", " ").replace ("]", "");
-		
+
 	}
 
 }
