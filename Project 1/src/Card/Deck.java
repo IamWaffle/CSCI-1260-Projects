@@ -136,12 +136,13 @@ public class Deck
 		{
 			nextCard = deck.length - 1;
 		}
-
-		return deltCard;
+		
+		return deltCard; //returns a card
 	}
 
 	/**
-	 * DealAHand deals a hand
+	 * DealAHand deals a hand of cards any size
+	 * 
 	 *
 	 * <hr>
 	 * Date created: Feb 26, 2018
@@ -159,7 +160,7 @@ public class Deck
 			output [i] = new Card (dealACard ( )).toString ( ) + "\n";
 		}
 
-		return Arrays.toString (output).replace (",", "").replace ("[", " ").replace ("]", "");
+		return Arrays.toString (output).replace (",", "").replace ("[", " ").replace ("]", ""); //returns formatted array string
 	}
 
 	/**
@@ -180,7 +181,7 @@ public class Deck
 			output [i] = new Card (deck [i]).toString ( ) + "\n";
 		}
 
-		return Arrays.toString (output).replace (",", "").replace ("[", " ").replace ("]", "");
+		return Arrays.toString (output).replace (",", "").replace ("[", " ").replace ("]", ""); //returns formatted array String
 
 	}
 

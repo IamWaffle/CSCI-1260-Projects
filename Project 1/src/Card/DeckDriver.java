@@ -12,7 +12,9 @@
 package Card;
 
 /**
- * Enter type purpose here
+ * to create and displays an entire Deck of Cards, shuffle the Deck and display it again,
+ * create another Deck as a copy of the first Deck, and deal and display two hands of 7 Cards
+ * each from that second Deck.
  *
  * <hr>
  * Date created: Feb 26, 2018
@@ -24,9 +26,7 @@ public class DeckDriver
 {
 
 	/**
-	 * to create and displays an entire Deck of Cards, shuffle the Deck and display it again,
-	 * create another Deck as a copy of the first Deck, and deal and display two hands of 7 Cards
-	 * each from that second Deck.
+	 * main method is where the whole program is run from.
 	 *
 	 * <hr>
 	 * Date created: Feb 26, 2018
@@ -37,49 +37,44 @@ public class DeckDriver
 	 */
 	public static void main (String [ ] args)
 	{
-		Deck temp = new Deck ( );
-		Deck temp2 = new Deck (temp);
+		Deck deck1 = new Deck ( );
 
-		System.out.println (temp);
+		System.out.println (deck1);
 
-		for (int i = 0; i < 20; i++ )
+		printLine ( );
+
+		deck1.shuffle ( );
+
+		System.out.println (deck1);
+
+		printLine ( );
+
+		Deck deck2 = new Deck (deck1);
+
+		System.out.println (deck2.dealAHand (7));
+
+		printLine ( );
+
+		System.out.println (deck2.dealAHand (7));
+
+	}
+
+	/**
+	 * A simple method to spam println for clarity
+	 *
+	 * <hr>
+	 * Date created: Feb 26, 2018
+	 *
+	 * <hr>
+	 * 
+	 * @param args
+	 */
+	public static void printLine ( )
+	{
+		for (int i = 0; i < 10; i++ )
 		{
 			System.out.println ( );
 		}
-
-		temp.shuffle ( );
-		temp.shuffle ( );
-		temp.shuffle ( );
-
-		System.out.println (temp);
-		
-		for (int i = 0; i < 20; i++ )
-		{
-			System.out.println ( );
-		}
-		
-		
-		for (int i = 0; i < 60; i++ )
-		{
-			System.out.println ("Delt Card:" + temp.dealACard ( ));
-		}
-		
-		for (int i = 0; i < 20; i++ )
-		{
-			System.out.println ( );
-		}
-		
-		temp.shuffle (5);
-		
-		System.out.println (temp);
-		
-		for (int i = 0; i < 20; i++ )
-		{
-			System.out.println ( );
-		}
-		
-		System.out.println (temp.dealAHand (5));
-		
 	}
 
 }
