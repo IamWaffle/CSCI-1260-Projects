@@ -152,12 +152,13 @@ public class Deck
 
 	public String dealAHand (int handSize)
 	{
-		String[] output = new String[handSize];
-		
-		for (int i = 0; i < output.length; i++) {
-			output[i] = new Card (dealACard()).toString ( ) + "\n";
+		String [ ] output = new String [handSize];
+
+		for (int i = 0; i < output.length; i++ )
+		{
+			output [i] = new Card (dealACard ( )).toString ( ) + "\n";
 		}
-		
+
 		return Arrays.toString (output).replace (",", "").replace ("[", " ").replace ("]", "");
 	}
 
