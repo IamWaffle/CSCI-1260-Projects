@@ -151,16 +151,15 @@ public class Deck
 	 * @return String
 	 */
 
-	public String dealAHand (int handSize)
+	public Hand dealAHand (int handSize)
 	{
-		String [ ] output = new String [handSize];
-
-		for (int i = 0; i < output.length; i++ )
-		{
-			output [i] = new Card (dealACard ( )).toString ( ) + "\n";
+		Hand hand = new Hand(handSize);
+		
+		for (int i = 0; i <= handSize; i ++) {
+			hand.addCard (dealACard());
 		}
-
-		return Arrays.toString (output).replace (",", "").replace ("[", " ").replace ("]", ""); //returns formatted array string
+		
+		return hand;
 	}
 
 	/**

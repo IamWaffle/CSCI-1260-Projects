@@ -11,6 +11,8 @@
 
 package Card;
 
+import java.util.Scanner;
+
 /**
  * to create and displays an entire Deck of Cards, shuffle the Deck and display it again,
  * create another Deck as a copy of the first Deck, and deal and display two hands of 7 Cards
@@ -37,26 +39,38 @@ public class DeckDriver
 	 */
 	public static void main (String [ ] args)
 	{
-		Deck deck1 = new Deck ( );
+		int handSize;
+		int numPlayers;
 
-		System.out.println (deck1);
+		Scanner input = new Scanner (System.in);
 
-		printLine ( );
+		System.out.print ("How many cards are in one hand?: ");
+		handSize = input.nextInt ( );
 
-		deck1.shuffle ( );
+		System.out.print ("How many players are playing?: ");
+		numPlayers = input.nextInt ( );
 
-		System.out.println (deck1);
+		Deck gameDeck = new Deck ( );
+		
+		while ( (handSize * numPlayers) > 52)
+		{
+			printLine ( );
+			System.out.println ("ERROR: They're not enough cards in the deck to deal " + numPlayers + " hands of " +
+							handSize + " cards. Try Again...");
+			System.out.print ("How many cards are in one hand?: ");
+			handSize = input.nextInt ( );
 
-		printLine ( );
+			System.out.print ("How many players are playing?: ");
+			numPlayers = input.nextInt ( );
+		}
 
-		Deck deck2 = new Deck (deck1);
 
-		System.out.println (deck2.dealAHand (7));
+		gameDeck.shuffle ( );
 
-		printLine ( );
-
-		System.out.println (deck2.dealAHand (7));
-
+		for (int i = 0; i < numPlayers; i++ )
+		{
+			System.out.println (gameDeck.dealAHand (handSize).toString ( ));
+		}
 	}
 
 	/**
@@ -67,7 +81,7 @@ public class DeckDriver
 	 *
 	 * <hr>
 	 * 
-	 * @param args
+	 * 
 	 */
 	public static void printLine ( )
 	{
