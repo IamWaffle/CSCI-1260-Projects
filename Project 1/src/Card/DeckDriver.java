@@ -64,12 +64,13 @@ public class DeckDriver
 			numPlayers = input.nextInt ( );
 		}
 
-
+		printLine();
+		 
 		gameDeck.shuffle ( );
 
 		for (int i = 0; i < numPlayers; i++ )
 		{
-			System.out.println (gameDeck.dealAHand (handSize).toString ( ));
+			System.out.println ("Player "+ (i+1) +  ": \n" + gameDeck.dealAHand (handSize).toString ( ));
 		}
 	}
 
@@ -85,7 +86,7 @@ public class DeckDriver
 	 */
 	public static void printLine ( )
 	{
-		for (int i = 0; i < 10; i++ )
+		for (int i = 0; i < 5; i++ )
 		{
 			System.out.println ( );
 		}

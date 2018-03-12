@@ -45,7 +45,9 @@ public class Hand
 		{
 			this.handSize = handSize;
 		}
-
+		
+		hand = new Card[handSize];
+		
 		cardsInHand = 0;
 	}
 
@@ -53,17 +55,21 @@ public class Hand
 	{
 		handSize = handIn.handSize;
 		cardsInHand = handIn.cardsInHand;
+		
+		hand = new Card[handSize];
 
 		for (int i = 0; i < handIn.hand.length; i++ )
 		{
 			this.hand [i] = handIn.hand [i];
 		}
+	
 	}
 
 	public void addCard (Card card)
 	{
 		if (cardsInHand < handSize)
-		{
+		{	
+			
 			hand [cardsInHand] = card;
 			cardsInHand++ ;
 		}
