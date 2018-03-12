@@ -51,7 +51,7 @@ public class DeckDriver
 		numPlayers = input.nextInt ( );
 
 		Deck gameDeck = new Deck ( );
-		
+
 		while ( (handSize * numPlayers) > 52)
 		{
 			printLine ( );
@@ -64,13 +64,13 @@ public class DeckDriver
 			numPlayers = input.nextInt ( );
 		}
 
-		printLine();
-		 
+		printLine ( );
+
 		gameDeck.shuffle ( );
 
 		for (int i = 0; i < numPlayers; i++ )
 		{
-			System.out.println ("Player "+ (i+1) +  ": \n" + gameDeck.dealAHand (handSize).toString ( ));
+			System.out.println ("Player " + (i + 1) + ": \n" + gameDeck.dealAHand (handSize).toString ( ));
 		}
 	}
 
