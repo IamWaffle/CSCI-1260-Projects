@@ -41,37 +41,52 @@ public class DeckDriver
 	{
 		int handSize;
 		int numPlayers;
+		boolean ok = false;
 
 		Scanner input = new Scanner (System.in);
 
-		System.out.print ("How many cards are in one hand?: ");
-		handSize = input.nextInt ( );
-
-		System.out.print ("How many players are playing?: ");
-		numPlayers = input.nextInt ( );
-
-		Deck gameDeck = new Deck ( );
-
-		while ( (handSize * numPlayers) > 52)
+		do
 		{
-			printLine ( );
-			System.out.println ("ERROR: They're not enough cards in the deck to deal " + numPlayers + " hands of " +
-							handSize + " cards. Try Again...");
-			System.out.print ("How many cards are in one hand?: ");
-			handSize = input.nextInt ( );
+			try
+			{
+				System.out.print ("How many cards are in one hand?: ");
+				handSize = input.nextInt ( );
 
-			System.out.print ("How many players are playing?: ");
-			numPlayers = input.nextInt ( );
+				System.out.print ("How many players are playing?: ");
+				numPlayers = input.nextInt ( );
+
+				Deck gameDeck = new Deck ( );
+
+				while ( (handSize * numPlayers) > 52)
+				{
+					printLine ( );
+					System.out.println (
+						"ERROR: They're not enough cards in the deck to deal " + numPlayers + " hands of " +
+										handSize + " cards. Try Again...");
+					System.out.print ("How many cards are in one hand?: ");
+					handSize = input.nextInt ( );
+
+					System.out.print ("How many players are playing?: ");
+					numPlayers = input.nextInt ( );
+				}
+
+				printLine ( );
+
+				gameDeck.shuffle ( );
+
+				for (int i = 0; i < numPlayers; i++ )
+				{
+					System.out.println ("Player " + (i + 1) + ": \n" + gameDeck.dealAHand (handSize).toString ( ));
+				}
+				ok = true;
+			}
+			catch (Exception e)
+			{
+				System.out.println ("That is not valid... Try Again");
+				input.nextLine ( );
+			}
 		}
-
-		printLine ( );
-
-		gameDeck.shuffle ( );
-
-		for (int i = 0; i < numPlayers; i++ )
-		{
-			System.out.println ("Player " + (i + 1) + ": \n" + gameDeck.dealAHand (handSize).toString ( ));
-		}
+		while ( !ok);
 	}
 
 	/**

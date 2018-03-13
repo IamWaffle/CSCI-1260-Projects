@@ -173,15 +173,14 @@ public class Deck
 
 	public String toString ( )
 	{
-		String [ ] output = new String [deck.length];
+		String  output = "";
 
 		for (int i = 0; i < deck.length; i++ )
 		{
-			output [i] = new Card (deck [i]).toString ( ) + "\n";
+			output += deck [i] + "\n";
 		}
 
-		return Arrays.toString (output).replace (",", "").replace ("[", " ").replace ("]", ""); //returns formatted array String
-
+		return output;
 	}
 
 }
