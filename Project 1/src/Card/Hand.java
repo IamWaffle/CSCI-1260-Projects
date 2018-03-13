@@ -115,14 +115,13 @@ public class Hand
 	 */
 	public String toString ( )
 	{
-		String [ ] output = new String [hand.length];
+		String output = "";
 
-		for (int i = 0; i < hand.length; i++ )
+		for (int i = 0; i < handSize; i++ )
 		{
-			output [i] = new Card (hand [i]).toString ( ) + "\n";
+			output += hand [i] + "\n";
 		}
 
-		return Arrays.toString (output).replace (",", "").replace ("[", " ").replace ("]", ""); // returns formatted
-																								 // array String
+		return output;
 	}
 }
