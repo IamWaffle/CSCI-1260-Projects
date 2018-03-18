@@ -38,10 +38,15 @@ public class Card
 		face = original.face;
 	}
 
-	public Card (int n)
+	public Card (int n) throws Exception
 	{
-		face = Face.values ( ) [n % 13];
-		suit = Suit.values ( ) [n % 4];
+		if(n < 0 || n > 51) {
+			face = Face.values ( ) [n % 13];
+			suit = Suit.values ( ) [n % 4];
+		}
+		else {
+			throw new Exception("Not valid..");
+		}
 	}
 
 	public String toString ( )

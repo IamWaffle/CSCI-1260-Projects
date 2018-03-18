@@ -36,9 +36,9 @@ public class Deck
 	 *
 	 * 
 	 */
-	public Deck ( )
+	public Deck ( ) throws Exception
 	{
-		for (int i = 0; i < deck.length; i++ )
+		for (int i = 0; i < deck.length - 1; i++ )
 		{
 			deck [i] = new Card (i);
 		}

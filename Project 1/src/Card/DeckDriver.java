@@ -55,7 +55,7 @@ public class DeckDriver
 				System.out.print ("How many players are playing?: ");
 				numPlayers = input.nextInt ( );
 
-				Deck gameDeck = new Deck ( );
+				Deck gameDeck = new Deck ();
 
 				while ( (handSize * numPlayers) > 52)
 				{
