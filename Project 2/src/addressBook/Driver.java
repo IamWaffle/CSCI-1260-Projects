@@ -30,5 +30,8 @@ public class Driver
 	
 	hey.setPhone ("6511231582");
 	System.out.println (hey.getPhone ( ));
+	
+	hey.setType ("FRIEND");
+	System.out.println (hey.getType ( ));
 	}
 }

@@ -25,7 +25,8 @@ import java.io.*;
  */
 public class Contact
 {
-
+	
+	ContactType type;
 	private String	name;
 	private String	streetAddress;
 	private String	city;
@@ -56,6 +57,15 @@ public class Contact
 	}
 
 	// setters
+	public void setType(String typeString) {
+		try {
+			type = ContactType.valueOf (typeString);
+		}
+		catch(Exception e) {
+			type = ContactType.OTHER;
+		}
+	}
+	
 	public void setName (String name)
 	{
 		this.name = name;
@@ -108,6 +118,10 @@ public class Contact
 	}
 
 	// getters
+	public String getType() {
+		return type.toString ( );
+	}
+	
 	public String getName ( )
 	{
 		return name;
