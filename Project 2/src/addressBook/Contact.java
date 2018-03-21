@@ -83,13 +83,14 @@ public class Contact
 
 	public void setPhone (String number)
 	{
-		if (number.length ( )  > 10 || number.length ( )  < 10)
+		if (number.length ( ) > 10 || number.length ( ) < 10)
 		{
 			phone = "(000)000-0000.";
 		}
 		else
 		{
-			phone = "(" + number.substring (0, 3) + ")" + number.substring (3, 6) + "-" + number.substring (6,10) + ".";
+			phone = "(" + number.substring (0, 3) + ")" + number.substring (3, 6) + "-" + number.substring (6, 10) +
+							".";
 		}
 
 	}
@@ -107,11 +108,39 @@ public class Contact
 	}
 
 	// getters
+	public String getName ( )
+	{
+		return name;
+	}
+
+	public String getAddr ( )
+	{
+		return streetAddress;
+	}
+
+	public String getCity ( )
+	{
+		return city;
+	}
+
+	public String getState ( )
+	{
+		return state;
+	}
+
+	public int getZip ( )
+	{
+		return zipCode;
+	}
+
+	public String getPhone ( )
+	{
+		return phone;
+	}
+
 	public String getEmail ( )
 	{
 		return email;
 	}
-	public String getPhone() {
-		return phone;
-	}
+
 }
