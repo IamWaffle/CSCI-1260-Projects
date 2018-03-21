@@ -25,29 +25,50 @@ import java.io.*;
  */
 public class Contact
 {
-	
-	ContactType type;
+
+	ContactType		type;
 	private String	name;
 	private String	streetAddress;
 	private String	city;
 	private String	state;
-	private int		zipCode;
+	private String	zipCode;
 	private String	phone;
 	private String	email;
 
 	public Contact ( )
 	{
-
+		setType("OTHER");
+		setName("Temp Name");
+		setAddr("123 Street St.");
+		setCity("Temp City");
+		setState("TN");
+		setZip("12345");
+		setPhone("1234567890");
+		setEmail("temp@email.address");
 	}
 
-	public Contact (int temp)
+	public Contact (ContactType type, String name, String addr, String city, String state, String zip, String phone,
+					String email)
 	{
-
+		this.type = type;
+		this.name = name;
+		streetAddress = addr;
+		this.city = city;
+		this.state = state;
+		zipCode = zip;
+		this.phone = phone;
+		this.email = email;
 	}
 
 	public Contact (Contact original)
 	{
-
+		setName (original.getName ( ));
+		setAddr (original.getAddr ( ));
+		setCity (original.getCity ( ));
+		setState (original.getState ( ));
+		setZip (original.getZip ( ));
+		setPhone (original.getPhone ( ));
+		setEmail (original.getEmail ( ));
 	}
 
 	public String toString ( )
@@ -57,21 +78,24 @@ public class Contact
 	}
 
 	// setters
-	public void setType(String typeString) {
-		try {
-			type = ContactType.valueOf (typeString);
+	public void setType (String typeString)
+	{
+		try
+		{
+			type = ContactType.valueOf (typeString.toUpperCase ( ));
 		}
-		catch(Exception e) {
+		catch (Exception e)
+		{
 			type = ContactType.OTHER;
 		}
 	}
-	
+
 	public void setName (String name)
 	{
 		this.name = name;
 	}
 
-	public void setStreetAddr (String addr)
+	public void setAddr (String addr)
 	{
 		streetAddress = addr;
 	}
@@ -81,12 +105,12 @@ public class Contact
 		this.city = city;
 	}
 
-	public void setState ( )
+	public void setState (String state)
 	{
 
 	}
 
-	public void setZipCode (int zip)
+	public void setZip (String zip)
 	{
 		zipCode = zip;
 	}
@@ -118,10 +142,11 @@ public class Contact
 	}
 
 	// getters
-	public String getType() {
+	public String getType ( )
+	{
 		return type.toString ( );
 	}
-	
+
 	public String getName ( )
 	{
 		return name;
@@ -142,7 +167,7 @@ public class Contact
 		return state;
 	}
 
-	public int getZip ( )
+	public String getZip ( )
 	{
 		return zipCode;
 	}

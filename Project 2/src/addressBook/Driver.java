@@ -24,14 +24,14 @@ public class Driver
 		
 	
 	Contact hey = new Contact();
-	hey.setEmail("hey@lo.com");
+	
 	
 	System.out.println (hey.getEmail());
 	
-	hey.setPhone ("6511231582");
+	
 	System.out.println (hey.getPhone ( ));
 	
-	hey.setType ("FRIEND");
+	
 	System.out.println (hey.getType ( ));
 	}
 }
