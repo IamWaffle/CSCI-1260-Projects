@@ -20,5 +20,15 @@ package addressBook;
  */
 public class Driver
 {
-
+	public static void main (String[] args) {
+		
+	
+	Contact hey = new Contact();
+	hey.setEmail("hey@lo.com");
+	
+	System.out.println (hey.getEmail());
+	
+	hey.setPhone ("4237277687");
+	System.out.println (hey.getPhone ( ));
+	}
 }
