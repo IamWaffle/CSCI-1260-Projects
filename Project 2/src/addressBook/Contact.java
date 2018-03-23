@@ -1,6 +1,7 @@
 package addressBook;
 
 import java.util.*;
+import lib.ArrayOperations;
 import java.io.*;
 
 /**
@@ -34,22 +35,32 @@ public class Contact
 	private String	zipCode;
 	private String	phone;
 	private String	email;
+	
+	private String[] states = new String[50];
+	
+	File file;
+	Scanner inputFile;
 
 	public Contact ( )
 	{
+		
+		fillStates();
 		setType("OTHER");
 		setName("Temp Name");
 		setAddr("123 Street St.");
 		setCity("Temp City");
-		setState("TN");
+		setState("XX");
 		setZip("12345");
 		setPhone("1234567890");
 		setEmail("temp@email.address");
+		
 	}
 
 	public Contact (ContactType type, String name, String addr, String city, String state, String zip, String phone,
 					String email)
 	{
+		
+		fillStates();
 		this.type = type;
 		this.name = name;
 		streetAddress = addr;
@@ -58,10 +69,13 @@ public class Contact
 		zipCode = zip;
 		this.phone = phone;
 		this.email = email;
+		
+		
 	}
 
 	public Contact (Contact original)
 	{
+		fillStates();
 		setName (original.getName ( ));
 		setAddr (original.getAddr ( ));
 		setCity (original.getCity ( ));
@@ -75,6 +89,23 @@ public class Contact
 	{
 		String output = "";
 		return output;
+	}
+	
+	public void fillStates() {
+		try {
+			file = new File ("States.txt");
+			inputFile = new Scanner (file);
+			
+			int i = 0;
+			while(inputFile.hasNext()) {
+				states[i] = inputFile.nextLine( );
+				i++;
+			}	
+			inputFile.close();	
+		}
+		catch(IOException e) {
+			System.out.println("Cannot open states file.");
+		}
 	}
 
 	// setters
@@ -107,7 +138,12 @@ public class Contact
 
 	public void setState (String state)
 	{
-
+		if(ArrayOperations.searchTerm (states, state) == true) {
+			this.state = state;
+		}
+		else {
+			this.state = "XX";
+		}
 	}
 
 	public void setZip (String zip)

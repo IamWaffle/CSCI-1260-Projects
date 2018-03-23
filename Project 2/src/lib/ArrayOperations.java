@@ -1,4 +1,4 @@
-package addressBook;
+package lib;
 
 public class ArrayOperations {
 	
@@ -176,6 +176,30 @@ public class ArrayOperations {
 			}
 		}
 		return returnNum;
+	}
+	
+	public static int sequentialSearch(String[] array, String searchString) {
+		int returnNum = -1;
+		
+		for (int i = 0; i < array.length; i++ ) {
+			if(array[i].compareTo(searchString) == 0) {
+				returnNum = i; 
+			}
+		}
+		return returnNum;
+	}
+	
+	public static boolean searchTerm(String[] array, String searchString) {
+		boolean found = false;
+		
+		for (int i = 0; i < array.length; i++ ) {
+			if(array[i].compareTo(searchString) == 0) {
+				found = true; 
+			}
+		}
+		
+		return found;
+		
 	}
 	
 	public static int findMax(int[] array, int size) {

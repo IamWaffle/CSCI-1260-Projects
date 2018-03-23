@@ -25,6 +25,8 @@ public class Driver
 	
 	Contact hey = new Contact();
 	
+	hey.setState("TN");
+	System.out.println(hey.getState());
 	
 	System.out.println (hey.getEmail());
 	
