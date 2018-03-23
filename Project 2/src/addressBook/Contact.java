@@ -27,19 +27,25 @@ import java.io.*;
 public class Contact
 {
 
-	ContactType			type;										// the Contact type
-	private String		name;										// String to hold the name
-	private String		streetAddress;					  // String to hold the address
-	private String		city;										// String to hold the city
-	private String		state;										// String to hold the state
-	private String		zipCode;								// String to hold the zip code
-	private String		phone;										// String to hold the phone number (in format)
-	private String		email;										// String to hold the email (in format)
+	ContactType			type;																	// the Contact type
+	private String		name;																	// String to hold the
+																								// name
+	private String		streetAddress;										  // String to hold the address
+	private String		city;																	// String to hold the
+																								// city
+	private String		state;																	// String to hold the
+																								// state
+	private String		zipCode;														// String to hold the zip code
+	private String		phone;																	// String to hold the
+																								// phone number (in
+																								// format)
+	private String		email;																	// String to hold the
+																								// email (in format)
 
-	private String [ ]	statesArray	= new String [50];	   // Array to hold the state abbreviations
+	private String [ ]	statesArray	= new String [50];		   // Array to hold the state abbreviations
 
-	File				file;										// File object
-	Scanner				inputFile;								// Scanner that opens the file
+	File				file;																	// File object
+	Scanner				inputFile;														// Scanner that opens the file
 
 	/**
 	 * No Arg Constructor
@@ -50,6 +56,7 @@ public class Contact
 
 	public Contact ( )
 	{
+		// if this is called and nothing is passed in then it sets the default values to this.
 		setType ("OTHER");
 		setName ("Temp Name");
 		setAddr ("123 Street St.");
@@ -73,6 +80,7 @@ public class Contact
 	public Contact (ContactType type, String name, String addr, String city, String state, String zip, String phone,
 					String email)
 	{
+		// sets the values passed in to the variables of the contact.
 		this.type = type;
 		this.name = name;
 		streetAddress = addr;
@@ -94,6 +102,7 @@ public class Contact
 
 	public Contact (Contact original)
 	{
+		// sets the values from the original Contact to this one
 		setName (original.getName ( ));
 		setAddr (original.getAddr ( ));
 		setCity (original.getCity ( ));
@@ -114,6 +123,7 @@ public class Contact
 
 	public String toString ( )
 	{
+		// creates a string that has neatly formatted details
 		String output = "Name: " + getName ( ) +
 						"\nType: " + getType ( ) +
 						"\nAddress: " + getAddr ( ) +
@@ -122,7 +132,7 @@ public class Contact
 						"\nZip: " + getZip ( ) +
 						"\nPhone: " + getPhone ( ) +
 						"\nEmail: " + getEmail ( );
-		return output;
+		return output; // returns the string
 	}
 
 	/**
@@ -134,19 +144,23 @@ public class Contact
 
 	public void fillStates ( )
 	{
+		// trys to open the file
 		try
 		{
 			file = new File ("States.txt");
 			inputFile = new Scanner (file);
 
 			int i = 0;
+			// while loop to fill the array
 			while (inputFile.hasNext ( ))
 			{
 				statesArray [i] = inputFile.nextLine ( );
 				i++ ;
 			}
+			// close file
 			inputFile.close ( );
 		}
+		// if it cannot find the file then it catches the expection and shows this error message
 		catch (IOException e)
 		{
 			System.out.println ("Cannot open states file.");
@@ -164,10 +178,13 @@ public class Contact
 	 */
 	public void setType (String typeString)
 	{
+		// trys to set the contact type to the one passed in
 		try
 		{
 			type = ContactType.valueOf (typeString.toUpperCase ( ));
 		}
+
+		// if it doesnt exist then it is set to OTHER
 		catch (Exception e)
 		{
 			type = ContactType.OTHER;
@@ -184,7 +201,7 @@ public class Contact
 	 */
 	public void setName (String name)
 	{
-		this.name = name;
+		this.name = name; // sets the name variable to the one passed in
 	}
 
 	/**
@@ -198,7 +215,7 @@ public class Contact
 
 	public void setAddr (String addr)
 	{
-		streetAddress = addr;
+		streetAddress = addr; // sets the var to the thing passed in
 	}
 
 	/**
@@ -212,7 +229,7 @@ public class Contact
 
 	public void setCity (String city)
 	{
-		this.city = city;
+		this.city = city; // sets the city var to what is passed in
 	}
 
 	/**
@@ -226,13 +243,16 @@ public class Contact
 
 	public void setState (String statePassed)
 	{
+		// fills the array / makes the var passed in uppercase
 		statePassed.toUpperCase ( );
 		fillStates ( );
 
+		// checks to see if what is passed in is valid and is in the array
 		if (ArrayOperations.sequentialSearch (statesArray, statePassed))
 		{
 			state = statePassed;
 		}
+		// if it isnt then it is set to XX
 		else
 		{
 			state = "XX";
@@ -250,7 +270,7 @@ public class Contact
 
 	public void setZip (String zip)
 	{
-		zipCode = zip;
+		zipCode = zip; // sets the zip code to the var passed in
 	}
 
 	/**
@@ -264,10 +284,12 @@ public class Contact
 
 	public void setPhone (String number)
 	{
+		// checks to see if the phone number is the appropriate length, if it isnt it is set to (000)000-0000.
 		if (number.length ( ) > 10 || number.length ( ) < 10)
 		{
 			phone = "(000)000-0000.";
 		}
+		// if it is the correct length it formats it to (000)000-0000 form
 		else
 		{
 			phone = "(" + number.substring (0, 3) + ")" + number.substring (3, 6) + "-" + number.substring (6, 10) +
@@ -286,10 +308,12 @@ public class Contact
 	 */
 	public void setEmail (String input)
 	{
+		// checks to see if the @ exists and if . comes after @
 		if (input.indexOf ("@") >= 0 && input.indexOf ("@") < input.indexOf ("."))
 		{
 			email = input;
 		}
+		// if not email is set to invalid
 		else
 		{
 			email = "invalid@address.given";
@@ -307,7 +331,7 @@ public class Contact
 	 */
 	public String getType ( )
 	{
-		return type.toString ( );
+		return type.toString ( ); // returns the tostring of the type
 	}
 
 	/**
@@ -320,7 +344,7 @@ public class Contact
 	 */
 	public String getName ( )
 	{
-		return name;
+		return name; // returns name var
 	}
 
 	/**
@@ -334,7 +358,7 @@ public class Contact
 
 	public String getAddr ( )
 	{
-		return streetAddress;
+		return streetAddress; // returns streetAddress var
 	}
 
 	/**
@@ -348,7 +372,7 @@ public class Contact
 
 	public String getCity ( )
 	{
-		return city;
+		return city; // returns city var
 	}
 
 	/**
@@ -361,7 +385,7 @@ public class Contact
 	 */
 	public String getState ( )
 	{
-		return state;
+		return state; // returns state var
 	}
 
 	/**
@@ -374,7 +398,7 @@ public class Contact
 	 */
 	public String getZip ( )
 	{
-		return zipCode;
+		return zipCode; // returns zipcode var
 	}
 
 	/**
@@ -387,7 +411,7 @@ public class Contact
 	 */
 	public String getPhone ( )
 	{
-		return phone;
+		return phone; // returns phone var
 	}
 
 	/**
@@ -401,7 +425,7 @@ public class Contact
 
 	public String getEmail ( )
 	{
-		return email;
+		return email; // returns email var
 	}
 
 }
