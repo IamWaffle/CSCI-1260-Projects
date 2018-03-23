@@ -1,5 +1,7 @@
 package lib;
 
+import java.util.Arrays;
+
 public class ArrayOperations
 {
 
@@ -218,18 +220,16 @@ public class ArrayOperations
 		return returnNum;
 	}
 
-	public static int sequentialSearch (String [ ] array, String searchString)
+	public static boolean sequentialSearch (String [ ] array, String searchString)
 	{
-		int returnNum = -1;
-
-		for (int i = 0; i < array.length; i++ )
+		for (String element : array)
 		{
-			if (array [i].equals (searchString))
+			if (element.trim ( ).equals (searchString))
 			{
-				returnNum = i;
+				return true;
 			}
 		}
-		return returnNum;
+		return false;
 	}
 
 	public static boolean searchTerm (String [ ] array, String searchString)

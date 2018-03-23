@@ -34,8 +34,5 @@ public class Driver
 	System.out.println (hey.toString ( ));
 	
 	System.out.println ();
-	
-	
-	
 	}
 }

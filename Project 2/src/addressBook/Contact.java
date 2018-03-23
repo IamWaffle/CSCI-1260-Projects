@@ -16,7 +16,7 @@ import java.io.*;
  */
 
 /**
- * Enter type purpose here
+ * Contact class is a class that hold information about a contact.
  *
  * <hr>
  * Date created: Mar 18, 2018
@@ -27,40 +27,43 @@ import java.io.*;
 public class Contact
 {
 
-	ContactType			type;
-	private String		name;
-	private String		streetAddress;
-	private String		city;
-	private String		state;
-	private String		zipCode;
-	private String		phone;
-	private String		email;
+	ContactType			type;			//the Contact type
+	private String		name;			//String to hold the name
+	private String		streetAddress;  //String to hold the address
+	private String		city;			//String to hold the city
+	private String		state;			//String to hold the state
+	private String		zipCode;		//String to hold the zip code
+	private String		phone;			//String to hold the phone number (in format)
+	private String		email;			//String to hold the email (in format)
 
-	private String [ ]	statesArray	= new String [50];
+	private String [ ]	statesArray	= new String [50];   //Array to hold the state abbreviations 
 
-	File				file;
-	Scanner				inputFile;
+	File				file;			//File object
+	Scanner				inputFile;		//Scanner that opens the file
 
+	
+	/**
+	 * No Arg Constructor
+	 *
+	 * <hr>
+	 * Date created: Mar 18, 2018
+	 */
+	
 	public Contact ( )
 	{
-
-		fillStates ( );
 		setType ("OTHER");
 		setName ("Temp Name");
 		setAddr ("123 Street St.");
 		setCity ("Temp City");
 		setState ("XX");
-		setZip ("12345");
-		setPhone ("1234567890");
+		setZip ("00000");
+		setPhone ("0000000000");
 		setEmail ("temp@email.address");
-
 	}
 
 	public Contact (ContactType type, String name, String addr, String city, String state, String zip, String phone,
 					String email)
 	{
-
-		fillStates ( );
 		this.type = type;
 		this.name = name;
 		streetAddress = addr;
@@ -69,12 +72,10 @@ public class Contact
 		zipCode = zip;
 		this.phone = phone;
 		this.email = email;
-
 	}
 
 	public Contact (Contact original)
 	{
-		fillStates ( );
 		setName (original.getName ( ));
 		setAddr (original.getAddr ( ));
 		setCity (original.getCity ( ));
@@ -148,17 +149,17 @@ public class Contact
 
 	public void setState (String statePassed)
 	{
+		statePassed.toUpperCase ( );
+		fillStates ( );
 
-		if (ArrayOperations.searchTerm (statesArray, statePassed) == true)
+		if (ArrayOperations.sequentialSearch (statesArray, statePassed))
 		{
 			state = statePassed;
 		}
 		else
 		{
 			state = "XX";
-			
 		}
-
 	}
 
 	public void setZip (String zip)
