@@ -25,15 +25,17 @@ public class Driver
 	
 	Contact hey = new Contact();
 	
+	System.out.println (hey.toString ( ));
+	
+	System.out.println ();
+	
 	hey.setState("TN");
-	System.out.println(hey.getState());
 	
-	System.out.println (hey.getEmail());
+	System.out.println (hey.toString ( ));
 	
-	
-	System.out.println (hey.getPhone ( ));
+	System.out.println ();
 	
 	
-	System.out.println (hey.getType ( ));
+	
 	}
 }

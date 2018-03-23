@@ -27,40 +27,40 @@ import java.io.*;
 public class Contact
 {
 
-	ContactType		type;
-	private String	name;
-	private String	streetAddress;
-	private String	city;
-	private String	state;
-	private String	zipCode;
-	private String	phone;
-	private String	email;
-	
-	private String[] states = new String[50];
-	
-	File file;
-	Scanner inputFile;
+	ContactType			type;
+	private String		name;
+	private String		streetAddress;
+	private String		city;
+	private String		state;
+	private String		zipCode;
+	private String		phone;
+	private String		email;
+
+	private String [ ]	statesArray	= new String [50];
+
+	File				file;
+	Scanner				inputFile;
 
 	public Contact ( )
 	{
-		
-		fillStates();
-		setType("OTHER");
-		setName("Temp Name");
-		setAddr("123 Street St.");
-		setCity("Temp City");
-		setState("XX");
-		setZip("12345");
-		setPhone("1234567890");
-		setEmail("temp@email.address");
-		
+
+		fillStates ( );
+		setType ("OTHER");
+		setName ("Temp Name");
+		setAddr ("123 Street St.");
+		setCity ("Temp City");
+		setState ("XX");
+		setZip ("12345");
+		setPhone ("1234567890");
+		setEmail ("temp@email.address");
+
 	}
 
 	public Contact (ContactType type, String name, String addr, String city, String state, String zip, String phone,
 					String email)
 	{
-		
-		fillStates();
+
+		fillStates ( );
 		this.type = type;
 		this.name = name;
 		streetAddress = addr;
@@ -69,13 +69,12 @@ public class Contact
 		zipCode = zip;
 		this.phone = phone;
 		this.email = email;
-		
-		
+
 	}
 
 	public Contact (Contact original)
 	{
-		fillStates();
+		fillStates ( );
 		setName (original.getName ( ));
 		setAddr (original.getAddr ( ));
 		setCity (original.getCity ( ));
@@ -87,24 +86,35 @@ public class Contact
 
 	public String toString ( )
 	{
-		String output = "";
+		String output = "Name: " + getName ( ) +
+						"\nType: " + getType ( ) +
+						"\nAddress: " + getAddr ( ) +
+						"\nCity: " + getCity ( ) +
+						"\nState: " + getState ( ) +
+						"\nZip: " + getZip ( ) +
+						"\nPhone: " + getPhone ( ) +
+						"\nEmail: " + getEmail ( );
 		return output;
 	}
-	
-	public void fillStates() {
-		try {
+
+	public void fillStates ( )
+	{
+		try
+		{
 			file = new File ("States.txt");
 			inputFile = new Scanner (file);
-			
+
 			int i = 0;
-			while(inputFile.hasNext()) {
-				states[i] = inputFile.nextLine( );
-				i++;
-			}	
-			inputFile.close();	
+			while (inputFile.hasNext ( ))
+			{
+				statesArray [i] = inputFile.nextLine ( );
+				i++ ;
+			}
+			inputFile.close ( );
 		}
-		catch(IOException e) {
-			System.out.println("Cannot open states file.");
+		catch (IOException e)
+		{
+			System.out.println ("Cannot open states file.");
 		}
 	}
 
@@ -136,14 +146,19 @@ public class Contact
 		this.city = city;
 	}
 
-	public void setState (String state)
+	public void setState (String statePassed)
 	{
-		if(ArrayOperations.searchTerm (states, state) == true) {
-			this.state = state;
+
+		if (ArrayOperations.searchTerm (statesArray, statePassed) == true)
+		{
+			state = statePassed;
 		}
-		else {
-			this.state = "XX";
+		else
+		{
+			state = "XX";
+			
 		}
+
 	}
 
 	public void setZip (String zip)
