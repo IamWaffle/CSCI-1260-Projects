@@ -27,25 +27,21 @@ import java.io.*;
 public class Contact
 {
 
-	ContactType			type;																	// the Contact type
-	private String		name;																	// String to hold the
-																								// name
-	private String		streetAddress;										  // String to hold the address
-	private String		city;																	// String to hold the
-																								// city
-	private String		state;																	// String to hold the
-																								// state
-	private String		zipCode;														// String to hold the zip code
-	private String		phone;																	// String to hold the
-																								// phone number (in
-																								// format)
-	private String		email;																	// String to hold the
-																								// email (in format)
-
+	ContactType			type;							// the Contact type
+	private String		name;							// String to hold the name
+	private String		streetAddress;					// String to hold the address
+	private String		city;							// String to hold the city
+	private String		state;							// String to hold the state
+	private String		zipCode;						// String to hold the zip code
+	private String		phone;							// String to hold the phone number (in format)
+	private String		email;							// String to hold the email (in format)
+	private String		photoName;						// String to hold the name of the photo
+	private String		photoPath;						//String to hold the path of the file (has to be jpg)
+	
 	private String [ ]	statesArray	= new String [50];		   // Array to hold the state abbreviations
 
-	File				file;																	// File object
-	Scanner				inputFile;														// Scanner that opens the file
+	private File				file;															// File object
+	private Scanner				inputFile;														// Scanner that opens the file
 
 	/**
 	 * No Arg Constructor
@@ -65,6 +61,8 @@ public class Contact
 		setZip ("00000");
 		setPhone ("0000000000");
 		setEmail ("temp@email.address");
+		setPhotoName("Temp Photo Name");
+		setPhotoPath("TempPath.jpg");
 	}
 
 	/**
@@ -77,18 +75,20 @@ public class Contact
 	 *            String email
 	 */
 
-	public Contact (ContactType type, String name, String addr, String city, String state, String zip, String phone,
-					String email)
+	public Contact (String type, String name, String addr, String city, String state, String zip, String phone,
+					String email, String photoName, String photoPath)
 	{
 		// sets the values passed in to the variables of the contact.
-		this.type = type;
-		this.name = name;
-		streetAddress = addr;
-		this.city = city;
-		this.state = state;
-		zipCode = zip;
-		this.phone = phone;
-		this.email = email;
+		setType (type);
+		setName (name);
+		setAddr (addr);
+		setCity (city);
+		setState (state);
+		setZip (zip);
+		setPhone (phone);
+		setEmail (email);
+		setPhotoName (photoName);
+		setPhotoPath (photoPath);
 	}
 
 	/**
@@ -103,13 +103,16 @@ public class Contact
 	public Contact (Contact original)
 	{
 		// sets the values from the original Contact to this one
+		setType(original.getType ( ));
 		setName (original.getName ( ));
 		setAddr (original.getAddr ( ));
 		setCity (original.getCity ( ));
 		setState (original.getState ( ));
 		setZip (original.getZip ( ));
-		setPhone (original.getPhone ( ));
+		setPhone(original.getPhone ( ));
 		setEmail (original.getEmail ( ));
+		setPhotoName(original.getPhotoName ( ));
+		setPhotoPath(original.getPhotoPath ( ));
 	}
 
 	/**
@@ -131,7 +134,9 @@ public class Contact
 						"\nState: " + getState ( ) +
 						"\nZip: " + getZip ( ) +
 						"\nPhone: " + getPhone ( ) +
-						"\nEmail: " + getEmail ( );
+						"\nEmail: " + getEmail ( ) +
+						"\nPhoto Name: " + getPhotoName ( ) +
+						"\nPhoto Path: " + getPhotoPath ( );
 		return output; // returns the string
 	}
 
@@ -284,16 +289,23 @@ public class Contact
 
 	public void setPhone (String number)
 	{
-		// checks to see if the phone number is the appropriate length, if it isnt it is set to (000)000-0000.
-		if (number.length ( ) > 10 || number.length ( ) < 10)
-		{
-			phone = "(000)000-0000.";
+		if (number.indexOf ("(") >= 0 && number.indexOf ("") >= 0 && number.indexOf ("-") < number.indexOf ("."))
+		{ // checks to see if it is already formatted.
+			phone = number;
 		}
-		// if it is the correct length it formats it to (000)000-0000 form
 		else
 		{
-			phone = "(" + number.substring (0, 3) + ")" + number.substring (3, 6) + "-" + number.substring (6, 10) +
-							".";
+			// checks to see if the phone number is the appropriate length, if it isnt it is set to (000)000-0000.
+			if (number.length ( ) > 10 || number.length ( ) < 10)
+			{
+				phone = "(000)000-0000.";
+			}
+			// if it is the correct length it formats it to (000)000-0000 form
+			else
+			{
+				phone = "(" + number.substring (0, 3) + ")" + number.substring (3, 6) + "-" + number.substring (6, 10) +
+								".";
+			}
 		}
 
 	}
@@ -317,6 +329,39 @@ public class Contact
 		else
 		{
 			email = "invalid@address.given";
+		}
+	}
+	
+	/**
+	 * setPhotoName - sets the photo name 
+	 *
+	 * <hr>
+	 * Date created: Mar 25, 2018
+	 * 
+	 * @param String name
+	 */
+	public void setPhotoName (String name)
+	{
+		photoName = name;
+	}
+
+	/**
+	 * setPhotoPath - sets the path of the file (has to be a jpg)
+	 *
+	 * <hr>
+	 * Date created: Mar 25, 2018
+	 * 
+	 * @param String path
+	 */
+	public void setPhotoPath (String path)
+	{
+		if (path.contains (".jpg"))
+		{
+			photoPath = path;
+		}
+		else
+		{
+			photoPath = "InvalidFileName.jpg";
 		}
 	}
 
@@ -426,6 +471,34 @@ public class Contact
 	public String getEmail ( )
 	{
 		return email; // returns email var
+	}
+	
+	/**
+	 * getPhotoName - returns the photo name
+	 *
+	 * <hr>
+	 * Date created: Mar 25, 2018
+	 * 
+	 * @return photoName
+	 */
+	
+	public String getPhotoName ( )
+	{
+		return photoName; //returns photoName var
+	}
+	
+	/**
+	 * getPhotoPath = returns the photo path
+	 *
+	 * <hr>
+	 * Date created: Mar 18, 2018
+	 * 
+	 * @return photoPath
+	 */
+
+	public String getPhotoPath ( )
+	{
+		return photoPath;	//returns photoPath var
 	}
 
 }

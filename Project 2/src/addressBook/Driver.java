@@ -11,7 +11,7 @@ package addressBook;
  */
 
 /**
- * Enter type purpose here
+ * To test the contact class.
  *
  * <hr>
  * Date created: Mar 18, 2018
@@ -23,16 +23,30 @@ public class Driver
 	public static void main (String[] args) {
 		
 	
-	Contact hey = new Contact();
+	Contact c1 = new Contact();
+	Contact c2 = new Contact("Customer", "John Smith", "865 Google Drive", "Keyboard Town", "CA", "76852", "6578452135", "SmithJ@gmail.com", "JohnSmith", "johnsmith.jpg");
+	Contact c3 = new Contact(c2);
 	
-	System.out.println (hey.toString ( ));
+	System.out.println (c1.toString ( ));
+	
+	System.out.println ();
+	
+	c1.setState("TND");
+	c1.setEmail ("shu.per@etsu.edu");
+	c1.setAddr ("423 Street Ave");
+	c1.setPhone ("423846451");
+	c1.setType ("Friend");
+	c1.setPhotoPath ("myphoto.png");
+	
+	System.out.println (c1.toString ( ));
 	
 	System.out.println ();
 	
-	hey.setState("TN");
-	
-	System.out.println (hey.toString ( ));
+	System.out.println (c2.toString ( ));
 	
 	System.out.println ();
+	
+	System.out.println (c3.toString ( ));
+	
 	}
 }
