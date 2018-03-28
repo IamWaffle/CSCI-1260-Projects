@@ -11,7 +11,9 @@
 
 package addressBook;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * The AddressBook class holds an arraylist of contacts (atleast 10), also contains methods that can be used to add remove and edit
@@ -42,9 +44,10 @@ public class AddressBook
 		addressBook.remove (i);
 	}
 
-	public void get (int i)
+	public String get (int i)
 	{
-		addressBook.get (i);
+		String s = addressBook.get (i).toString ( );
+		return s;
 	}
 
 	public int size ( )
@@ -60,6 +63,48 @@ public class AddressBook
 	public String getOwnerName ( )
 	{
 		return owner.getName ( );
+	}
+	
+	public void fillAddressBook ( ) throws Exception
+	{
+		File fileIn = new File ("ContactData\\ContactList.txt");
+		Scanner file = null;
+
+		if (fileIn.exists ( ))
+		{
+			try
+			{
+				file = new Scanner (fileIn);
+			}
+			catch (Exception e)
+			{
+				System.out.println ("Unable to import contacts from ContactList.txt\n" + e.getMessage ( ));
+			}
+
+			while (file.hasNext ( ))
+			{
+				String str = file.nextLine ( );
+				String [ ] fields = str.split ("\\|");
+
+				try
+				{
+					Contact c = new Contact (fields [0], fields [1], fields [2], fields [3], fields [4], fields [5],
+									fields [6], fields [7], fields [8], fields [9]);
+					addressBook.add (c);
+				}
+				catch (Exception e)
+				{
+					System.out.println ("Bad input record: '" + str + "'" + e.getMessage ( ));
+				}
+			}
+
+			file.close ( );
+		}
+		else
+		{
+			throw new Exception ("The Contact List file does not exist..");
+		}
+
 	}
 
 }

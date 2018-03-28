@@ -20,7 +20,18 @@ public class Driver
 		AddressBook addressBook = new AddressBook ( );
 		addressBook.setOwnerName (input.nextLine ( ));
 
-		System.out.println (menu ( ));
+		if(menu() == 1) {
+			try
+			{
+				addressBook.fillAddressBook();
+			}
+			catch (Exception e)
+			{
+				System.out.println (e.getMessage());
+			}
+		}
+		
+		System.out.println (addressBook.get (0));
 
 	}
 
@@ -51,6 +62,7 @@ public class Driver
 		}
 		while (choice < 1 || choice > 10);
 		return choice;
-
 	}
+	
+
 }
