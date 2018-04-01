@@ -1,0 +1,1 @@
+FRIEND|BILL|123 Address Ln|Shine City|TN|37659|4651325894|billman@mail.edu|Bill Photo| mypicture.jpg
