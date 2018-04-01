@@ -2,7 +2,6 @@
 import java.util.*;
 import addressBook.*;
 
-
 /**
  * ---------------------------------------------------------------------------
  * File name: Driver.java
@@ -45,7 +44,8 @@ public class Driver
 			{
 				try
 				{
-					addressBook.fillAddressBook ();;
+					addressBook.fillAddressBook ( );
+					;
 					System.out.println ("Task Completed!\n\n");
 				}
 				catch (Exception e)
@@ -56,8 +56,18 @@ public class Driver
 			else if (menuChoice == 2)
 			{
 				addressBook.addAContact ( );
+
 			}
-			
+			else if (menuChoice == 3)
+			{
+				addressBook.editAContact ( );
+
+			}
+			else if (menuChoice == 4)
+			{
+				addressBook.removeAContact ( );
+
+			}
 			else if (menuChoice == 5)
 			{
 				if (addressBook.toString ( ) != null)
@@ -71,6 +81,9 @@ public class Driver
 				}
 
 			}
+			else if(menuChoice == 6) {
+				addressBook.findAContact ( );
+			}
 			else if (menuChoice == 10)
 			{
 				exit = true;
@@ -78,6 +91,10 @@ public class Driver
 
 		}
 		while ( !exit);
+		
+		if(exit == true) {
+			System.exit (-1);
+		}
 
 	}
 

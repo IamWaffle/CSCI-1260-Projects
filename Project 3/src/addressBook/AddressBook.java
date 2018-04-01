@@ -42,6 +42,7 @@ public class AddressBook
 	{
 		addressBook.add (c);
 	}
+
 	public void remove (int i)
 	{
 		addressBook.remove (i);
@@ -79,7 +80,7 @@ public class AddressBook
 
 			for (int i = 0; i < addressBook.size ( ); i++ )
 			{
-				String temp = "Contact " + (i+1) + ":\n" + addressBook.get (i).toString ( ) + "\n";
+				String temp = "Contact " + (i + 1) + ":\n" + addressBook.get (i).toString ( ) + "\n\n";
 				output += temp;
 			}
 
@@ -87,8 +88,8 @@ public class AddressBook
 		}
 		return output;
 	}
-	
-	public void fillAddressBook ()
+
+	public void fillAddressBook ( )
 	{
 
 		JFileChooser fileChooser = new JFileChooser ("ContactData");
@@ -117,13 +118,13 @@ public class AddressBook
 					{
 						Contact c = new Contact (fields [0], fields [1], fields [2], fields [3], fields [4], fields [5],
 										fields [6], fields [7], fields [8], fields [9]);
-						add(c);
+						add (c);
 					}
 					catch (Exception e)
 					{
 						System.out.println ("Bad input record: '" + str + "'" + e.getMessage ( ));
 					}
-					
+
 				}
 
 				file.close ( );
@@ -136,8 +137,15 @@ public class AddressBook
 		}
 
 	}
-	
+
 	public void addAContact ( )
+	{
+		add (addContactInfo ( ));
+		System.out.println ("Contact Added!\n\n");
+
+	}
+
+	public Contact addContactInfo ( )
 	{
 		Scanner input = new Scanner (System.in);
 
@@ -179,10 +187,115 @@ public class AddressBook
 			c.setPhotoName (fileChooser.getSelectedFile ( ).getName ( ));
 			c.setPhotoPath (fileChooser.getSelectedFile ( ).getAbsolutePath ( ));
 		}
-
-		System.out.println ("Contact Added!\n\n");
-		
-		add(c);
+		return c;
 	}
 
+	public void editAContact ( )
+	{
+		Scanner input = new Scanner (System.in);
+
+		System.out.println (firstNameList ( ));
+		System.out.print ("Enter the name of the contact would you like to edit: ");
+		String name = input.nextLine ( ).toUpperCase ( );
+		boolean found = true;
+
+		for (int i = 0; i < addressBook.size ( ); i++ )
+		{
+			if (addressBook.get (i).getName ( ).toUpperCase ( ).equals (name))
+			{
+				addressBook.set (i, addContactInfo ( ));
+				found = true;
+
+				System.out.println ("Contact Updated!\n\n");
+			}
+			else
+			{
+				found = false;
+			}
+		}
+
+		if ( !found)
+		{
+			System.out.println ("\nCannot find the name in the address book!\n");
+		}
+
+	}
+
+	public void removeAContact ( )
+	{
+		Scanner input = new Scanner (System.in);
+		System.out.println (firstNameList ( ));
+		System.out.print ("Enter the name of the contact you wish to remove.");
+		String name = input.nextLine ( ).toUpperCase ( );
+		boolean found = true;
+
+		for (int i = 0; i < addressBook.size ( ); i++ )
+		{
+			if (addressBook.get (i).getName ( ).toUpperCase ( ).equals (name))
+			{
+				addressBook.remove (i);
+				found = true;
+				System.out.println ("Contact Removed!\n\n");
+			}
+			else
+			{
+				found = false;
+			}
+		}
+
+		if ( !found)
+		{
+			System.out.println ("\nCannot find the name in the address book!\n");
+		}
+
+	}
+
+	public String firstNameList ( )
+	{
+		String output = null;
+
+		if (addressBook.size ( ) > 0)
+		{
+			output = "\nFull Contact List: \n\n";
+
+			for (int i = 0; i < addressBook.size ( ); i++ )
+			{
+				String temp = "Contact " + (i + 1) + ":\n" + addressBook.get (i).getName ( ) + "\n";
+				output += temp;
+			}
+
+			return output;
+		}
+		return output;
+	}
+
+	public void findAContact ( )
+	{
+		Scanner input = new Scanner (System.in);
+		System.out.println (firstNameList ( ));
+		System.out.print ("Enter the name of the contact you wish to find.");
+		String name = input.nextLine ( ).toUpperCase ( );
+		boolean found = true;
+
+		for (int i = 0; i < addressBook.size ( ); i++ )
+		{
+			if (addressBook.get (i).getName ( ).toUpperCase ( ).equals (name))
+			{
+				System.out.println ("Contact Found!\n\n");
+				found = true;
+				System.out.println (addressBook.get (i).toString ( ) + "\n\n");
+				
+
+			}
+			else
+			{
+				found = false;
+			}
+		}
+		if ( !found)
+		{
+			System.out.println ("\nCannot find the name in the address book!\n");
+		}
+
+	}
 }
