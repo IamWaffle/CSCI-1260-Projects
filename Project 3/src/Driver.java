@@ -81,8 +81,42 @@ public class Driver
 				}
 
 			}
-			else if(menuChoice == 6) {
-				addressBook.findAContact ( );
+			else if (menuChoice == 6)
+			{
+				try
+				{
+					addressBook.findAContact ( );
+				}
+				catch (Exception e)
+				{
+					System.out.println ("\nCannot find the name in the address book!\n");
+				}
+			}
+			else if (menuChoice == 7)
+			{
+				try
+				{
+					System.out.print ("Enter the Type you want to search for: ");
+					String search = input.nextLine ( );
+					addressBook.searchForType (search);
+				}
+				catch (Exception e)
+				{
+					System.out.print ("\n\nType not found or doesn't exist!\n\n");
+				}
+			}
+			else if (menuChoice == 8)
+			{
+				try
+				{
+					System.out.print ("Enter the Zip code you want to search for: ");
+					String search = input.nextLine ( );
+					addressBook.searchForZip (search);
+				}
+				catch (Exception e)
+				{
+					System.out.print ("\n\nZip not found or valid!\n\n");
+				}
 			}
 			else if (menuChoice == 10)
 			{
@@ -91,9 +125,10 @@ public class Driver
 
 		}
 		while ( !exit);
-		
-		if(exit == true) {
-			System.exit (-1);
+
+		if (exit == true)
+		{
+			System.exit ( -1);
 		}
 
 	}

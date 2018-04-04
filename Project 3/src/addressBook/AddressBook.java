@@ -269,7 +269,7 @@ public class AddressBook
 		return output;
 	}
 
-	public void findAContact ( )
+	public void findAContact ( ) throws Exception
 	{
 		Scanner input = new Scanner (System.in);
 		System.out.println (firstNameList ( ));
@@ -284,7 +284,6 @@ public class AddressBook
 				System.out.println ("Contact Found!\n\n");
 				found = true;
 				System.out.println (addressBook.get (i).toString ( ) + "\n\n");
-				
 
 			}
 			else
@@ -294,7 +293,53 @@ public class AddressBook
 		}
 		if ( !found)
 		{
-			System.out.println ("\nCannot find the name in the address book!\n");
+			throw new Exception ("Contact not found!");
+		}
+
+	}
+
+	public void searchForType (String input) throws Exception
+	{
+
+		String search = input.toUpperCase ( );
+
+		if (search.equals ("FAMILY") || search.equals ("CHURCH") || search.equals ("FRIEND") ||
+						search.equals ("BUSINESSCOLLEAGUE") ||
+						search.equals ("SERVICEPERSON") || search.equals ("CUSTOMER") || search.equals ("OTHER"))
+		{
+			for (int i = 0; i < addressBook.size ( ); i++ )
+			{
+				if (addressBook.get (i).getType ( ).equals (search))
+				{
+					System.out.println (addressBook.get (i) + "\n\n");
+				}
+			}
+		}
+		else
+		{
+			throw new Exception ("Type not found!");
+		}
+
+	}
+
+	public void searchForZip (String input) throws Exception
+	{
+
+		String search = input.toUpperCase ( );
+
+		if (search.length ( ) < 6 && search.length ( ) > 0)
+		{
+			for (int i = 0; i < addressBook.size ( ); i++ )
+			{
+				if (addressBook.get (i).getZip ( ).equals (search))
+				{
+					System.out.println (addressBook.get (i) + "\n\n");
+				}
+			}
+		}
+		else
+		{
+			throw new Exception ("Zip invalid!");
 		}
 
 	}
