@@ -24,6 +24,14 @@ import addressBook.*;
  */
 public class Driver
 {
+	
+	/**
+	 * main method is where the program is run from, it will call many methods from AddressBook to make a easy user experience. 
+	 *
+	 * <hr>
+	 * Date created: Mar 18, 2018
+	 * 
+	 */
 	public static void main (String [ ] args)
 	{
 		Scanner input = new Scanner (System.in);
@@ -138,6 +146,14 @@ public class Driver
 		}
 
 	}
+	
+	/**
+	 * menu method is called to display the main menu where the user chooses what to do. It returns an int of the selection the user selected.
+	 *
+	 * <hr>
+	 * Date created: Mar 28, 2018
+	 * @return int choice
+	 */
 
 	public static int menu ( )
 	{
