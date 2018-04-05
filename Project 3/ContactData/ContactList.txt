@@ -1,11 +1,10 @@
-FRIEND|Bill|123 Address Ln|Shine City|TN|37659|4651325894|billman@mail.edu|Photo| mypicture.jpg
-FAMILY|Ryan|685 Google Dr|Mountain City|TN|37683|4232561658|billman@mail.edu|Photo| mypicture.jpg
-CHURCH|Amy|123 Sundance Ln|Atlanta|GA|85624|4568526594|billman@mail.edu|Photo| mypicture.jpg
-BUSINESSCOLLEAGUE|David|756 Lumpkin Branch Blvd|Johnson City|TN|37601|4231585657|billman@mail.edu|Photo| mypicture.jpg
-SERVICEPERSON|Gerald|535 Wong Way|Kingsport|TN|37611|6541235685|billman@mail.edu|Photo| mypicture.jpg
-CUSTOMER|Amberli|723 Corner Rn|Los Angeles|CA|56259|9512658542|billman@mail.edu|Photo| mypicture.jpg
-OTHER|Dillon|425 Shingletown Rd|Shell City|TN|37659|4235685478|billman@mail.edu|Photo| mypicture.jpg
-CHURCH|Austin|852 Bing Way|Philly|PA|23652|4236584521|billman@mail.edu|Photo| mypicture.jpg
-FRIEND|Donny|999 Highway 421 S.|Nashville|TN|37560|9845685632|billman@mail.edu|Photo| mypicture.jpg
-FRIEND|Bok|712 Lirik Dr|Shine City|TN|37659|4231585695|billman@mail.edu|Photo| mypicture.jpg
-
+FRIEND|Bill|123 Address Ln|Shine City|TN|37659|(465)132-5894.|billman@mail.edu|Photo| mypicture.jpg
+FRIEND|Ryan|456 Friend Way|Mountain City|XX|37683|(423)268-1699.|shuper@etsu.edu|Bill.jpg|C:\Users\ryan2\Documents\GitHub\Project 3\ContactData\Bill.jpg
+CHURCH|Amy|123 Sundance Ln|Atlanta|GA|85624|(456)852-6594.|billman@mail.edu|Photo| mypicture.jpg
+BUSINESSCOLLEAGUE|David|756 Lumpkin Branch Blvd|Johnson City|TN|37601|(423)158-5657.|billman@mail.edu|Photo| mypicture.jpg
+SERVICEPERSON|Gerald|535 Wong Way|Kingsport|TN|37611|(654)123-5685.|billman@mail.edu|Photo| mypicture.jpg
+CUSTOMER|Amberli|723 Corner Rn|Los Angeles|CA|56259|(951)265-8542.|billman@mail.edu|Photo| mypicture.jpg
+OTHER|Dillon|425 Shingletown Rd|Shell City|TN|37659|(423)568-5478.|billman@mail.edu|Photo| mypicture.jpg
+CHURCH|Austin|852 Bing Way|Philly|PA|23652|(423)658-4521.|billman@mail.edu|Photo| mypicture.jpg
+FRIEND|Donny|999 Highway 421 S.|Nashville|TN|37560|(984)568-5632.|billman@mail.edu|Photo| mypicture.jpg
+FRIEND|Bok|712 Lirik Dr|Shine City|TN|37659|(423)158-5695.|billman@mail.edu|Photo| mypicture.jpg

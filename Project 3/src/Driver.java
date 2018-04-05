@@ -125,6 +125,7 @@ public class Driver
 			}
 			else if (menuChoice == 10)
 			{
+				addressBook.saveAddressBook ( );
 				exit = true;
 			}
 
@@ -157,7 +158,7 @@ public class Driver
 				System.out.println ("7. Display all Contacts of a given ContactType");
 				System.out.println ("8. Display all Contacts that are in a specified zip code.");
 				System.out.println ("9. Sort the Contacts in the AddressBook by name.");
-				System.out.println ("10. Exit");
+				System.out.println ("10. Exit & Save");
 				System.out.println ("----------------------------------------------");
 				System.out.print ("Enter a number: ");
 

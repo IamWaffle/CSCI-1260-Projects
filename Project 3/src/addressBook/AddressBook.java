@@ -12,6 +12,7 @@
 package addressBook;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -32,9 +33,16 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class AddressBook
 {
-	private ArrayList <Contact>	addressBook	= new ArrayList ( );
-	private Contact				owner		= new Contact ( );
+	private ArrayList <Contact>	addressBook	= new ArrayList ( );		//Array list of contacts called addressBook
+	private Contact				owner		= new Contact ( );			//A contact object for the owner.
 
+	
+	/**
+	 * No Arg Constructor
+	 *
+	 * <hr>
+	 * Date created: Mar 27, 2018
+	 */
 	public AddressBook ( )
 	{
 		setOwnerName ("Default Owner Name");
@@ -134,6 +142,46 @@ public class AddressBook
 			catch (Exception e)
 			{
 				System.out.println ("Unable to import contacts from imported text file./n" + e.getMessage ( ));
+			}
+
+		}
+
+	}
+	
+	public void saveAddressBook ( )
+	{
+
+		JFileChooser fileChooser = new JFileChooser ("ContactData");
+		FileNameExtensionFilter filter = new FileNameExtensionFilter ("Text Files", "txt", "text");
+		fileChooser.setFileFilter (filter);
+		fileChooser.setDialogTitle ("Select a file to save to...");
+
+		int button = fileChooser.showSaveDialog (null);
+
+		File fileIn;
+		Scanner file;
+
+		if (button == JFileChooser.APPROVE_OPTION)
+		{
+			try
+			{
+				fileIn = fileChooser.getSelectedFile ( );
+				PrintWriter pw = new PrintWriter (fileIn);
+
+				for (int i = 0; i < addressBook.size ( ); i++ )
+				{
+					pw.println (addressBook.get (i).getType ( ) + "|" + addressBook.get (i).getName ( ) + "|" +
+									addressBook.get (i).getAddr ( ) + "|" + addressBook.get (i).getCity ( ) + "|" +
+									addressBook.get (i).getState ( ) + "|" + addressBook.get (i).getZip ( ) + "|" +
+									addressBook.get (i).getPhone ( ) + "|" + addressBook.get (i).getEmail ( ) + "|" +
+									addressBook.get (i).getPhotoName ( ) + "|" + addressBook.get (i).getPhotoPath ( ));
+				}
+
+				pw.close ( );
+			}
+			catch (Exception e)
+			{
+				System.out.println ("Unable to save!/n" + e.getMessage ( ));
 			}
 
 		}
