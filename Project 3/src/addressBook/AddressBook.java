@@ -13,6 +13,8 @@ package addressBook;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -343,4 +345,16 @@ public class AddressBook
 		}
 
 	}
+
+	public void sortByName ( )
+	{
+		Collections.sort (addressBook, new Comparator <Contact> ( )
+		{
+			public int compare (Contact c1, Contact c2)
+			{
+				return Integer.valueOf (c1.getName ( ).compareTo (c2.getName ( )));
+			}
+		});
+	}
+
 }

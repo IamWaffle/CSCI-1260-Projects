@@ -118,6 +118,11 @@ public class Driver
 					System.out.print ("\n\nZip not found or valid!\n\n");
 				}
 			}
+
+			else if (menuChoice == 9)
+			{
+				addressBook.sortByName ( );
+			}
 			else if (menuChoice == 10)
 			{
 				exit = true;
