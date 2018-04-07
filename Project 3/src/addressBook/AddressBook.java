@@ -30,7 +30,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class AddressBook
 {
 	private ArrayList <Contact>	addressBook	= new ArrayList ( );		// Array list of contacts called addressBook
-	private Contact				owner		= new Contact ( );				// A contact object for the owner.
+	private Contact				owner		= new Contact ( );					// A contact object for the owner.
 
 	/**
 	 * No Arg Constructor
@@ -44,10 +44,39 @@ public class AddressBook
 	}
 
 	/**
+	 * Arg Constructor for name?
+	 *
+	 * <hr>
+	 * Date created: Mar 27, 2018
+	 */
+	public AddressBook (String name)
+	{
+		setOwnerName (name);
+	}
+
+	/**
+	 * Copy Contructor
+	 *
+	 * <hr>
+	 * Date created: Mar 27, 2018
+	 */
+
+	public AddressBook (AddressBook original)
+	{
+		setOwnerName (original.getOwnerName ( ));
+
+		for (int i = 0; i < addressBook.size ( ); i++ )
+		{
+			add (original.getContact (i));
+		}
+	}
+
+	/**
 	 * Add method adds a contact to the address book
 	 *
 	 * <hr>
 	 * Date created: Mar 27, 2018
+	 * 
 	 * @param Contact c
 	 */
 	public void add (Contact c)
@@ -60,19 +89,21 @@ public class AddressBook
 	 *
 	 * <hr>
 	 * Date created: Mar 27, 2018
-	 * @param int i 
+	 * 
+	 * @param int i
 	 */
 	public void remove (int i)
 	{
 		addressBook.remove (i);
 	}
-	
+
 	/**
 	 * Get method returns the to String of the contact that is in that position in the array list
 	 *
 	 * <hr>
 	 * Date created: Mar 27, 2018
-	 * @param int i 
+	 * 
+	 * @param int i
 	 * @return String s
 	 */
 
@@ -81,12 +112,26 @@ public class AddressBook
 		String s = addressBook.get (i).toString ( );
 		return s;
 	}
-	
+
+	/**
+	 * gets a Contact and returns the object.
+	 *
+	 * <hr>
+	 * Date created: Mar 27, 2018
+	 */
+
+	public Contact getContact (int i)
+	{
+		Contact c = new Contact (addressBook.get (i));
+		return c;
+	}
+
 	/**
 	 * size method calls the size method from arraylist and returns the size of the address book array list
 	 *
 	 * <hr>
 	 * Date created: Mar 27, 2018
+	 * 
 	 * @return int addressBook.size
 	 */
 
@@ -94,12 +139,13 @@ public class AddressBook
 	{
 		return addressBook.size ( );
 	}
-	
+
 	/**
 	 * setOwnerName sets the name of the oner contact object
 	 *
 	 * <hr>
 	 * Date created: Mar 28, 2018
+	 * 
 	 * @param String name
 	 */
 
@@ -107,12 +153,14 @@ public class AddressBook
 	{
 		owner.setName (name);
 	}
-	
+
 	/**
-	 * getOwnerName calls the get name method from the contact class and returns the name of the owner from the owner object
+	 * getOwnerName calls the get name method from the contact class and returns the name of the owner from the owner
+	 * object
 	 *
 	 * <hr>
 	 * Date created: Mar 28, 2018
+	 * 
 	 * @return String owner.getName()
 	 */
 
@@ -120,13 +168,14 @@ public class AddressBook
 	{
 		return owner.getName ( );
 	}
-	
+
 	/**
 	 * toString displays every contacts informaion inside the addressbook in a neatly fashion
 	 *
 	 * <hr>
 	 * Date created: Mar 28, 2018
-	 * @return String  output
+	 * 
+	 * @return String output
 	 */
 
 	public String toString ( )
@@ -148,7 +197,7 @@ public class AddressBook
 		}
 		return output;
 	}
-	
+
 	/**
 	 * fillAddressBook method uses JFile chooser to open a delimited text file to fill the addressbook
 	 *
@@ -205,9 +254,10 @@ public class AddressBook
 		}
 
 	}
-	
+
 	/**
-	 * saveAddressBook uses JFileChooser to select a file and write to it to save the information stored in the addressBook
+	 * saveAddressBook uses JFileChooser to select a file and write to it to save the information stored in the
+	 * addressBook
 	 *
 	 * <hr>
 	 * Date created: Apr 5, 2018
@@ -253,9 +303,9 @@ public class AddressBook
 		}
 
 	}
-	
+
 	/**
-	 * addAContact calls the addContactInfo method 
+	 * addAContact calls the addContactInfo method
 	 *
 	 * <hr>
 	 * Date created: Apr 3, 2018
@@ -268,7 +318,7 @@ public class AddressBook
 		System.out.println ("Contact Added!\n\n");
 
 	}
-	
+
 	/**
 	 * addContactInfo calls the setter for the contact and fill a contact object to put in the addressBook
 	 *
@@ -321,7 +371,7 @@ public class AddressBook
 		}
 		return c;
 	}
-	
+
 	/**
 	 * EditAContact verifies which contact the user wishes to edit, then calls the addContactInfo method.
 	 *
@@ -360,7 +410,7 @@ public class AddressBook
 		}
 
 	}
-	
+
 	/**
 	 * RemoveAContact verifies the contact the user wishes to remove then calls the remove method.
 	 *
@@ -397,12 +447,13 @@ public class AddressBook
 		}
 
 	}
-	
+
 	/**
 	 * firstNameList displays the first names from all the contacts in the addressbook in a neatly fashion
 	 *
 	 * <hr>
 	 * Date created: Apr 3, 2018
+	 * 
 	 * @return String output
 	 */
 
@@ -424,12 +475,14 @@ public class AddressBook
 		}
 		return output;
 	}
-	
+
 	/**
-	 * findAContact verifies by name which contact the user is looking for then calls the toString for that specific contact.
+	 * findAContact verifies by name which contact the user is looking for then calls the toString for that specific
+	 * contact.
 	 *
 	 * <hr>
 	 * Date created: Apr 4, 2018
+	 * 
 	 * @throws Exception if the contact is not found
 	 */
 
@@ -463,10 +516,13 @@ public class AddressBook
 	}
 
 	/**
-	 * searchForType verifies which type the user wants to search for then searches through the entire addressBook returning the toString (get method) for each contact found with that type
+	 * searchForType verifies which type the user wants to search for then searches through the entire addressBook
+	 * returning the toString (get method) for each contact found with that type
 	 *
 	 * <hr>
 	 * Date created: Apr 4, 2018
+	 * 
+	 * @param String input
 	 * @throws Exception if the type is not found
 	 */
 	public void searchForType (String input) throws Exception
@@ -492,12 +548,15 @@ public class AddressBook
 		}
 
 	}
-	
+
 	/**
-	 * searchForZip verifies which type the user wants to search for then searches through the entire addressBook returning the toString (get method) for each contact found with that zip
+	 * searchForZip verifies which type the user wants to search for then searches through the entire addressBook
+	 * returning the toString (get method) for each contact found with that zip
 	 *
 	 * <hr>
 	 * Date created: Apr 4, 2018
+	 * 
+	 * @param String input
 	 * @throws Exception if the Zip is invalid
 	 */
 
