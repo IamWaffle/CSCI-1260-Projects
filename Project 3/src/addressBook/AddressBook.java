@@ -40,7 +40,7 @@ public class AddressBook
 	 */
 	public AddressBook ( )
 	{
-		setOwnerName ("Default Owner Name");
+		setOwnerName ("Default Owner Name"); //sets a default name
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class AddressBook
 	 */
 	public AddressBook (String name)
 	{
-		setOwnerName (name);
+		setOwnerName (name); //sets the name to the string passed in
 	}
 
 	/**
@@ -65,7 +65,7 @@ public class AddressBook
 	{
 		setOwnerName (original.getOwnerName ( ));
 
-		for (int i = 0; i < addressBook.size ( ); i++ )
+		for (int i = 0; i < addressBook.size ( ); i++ ) //for loop to copy all the contents of the original arraylist to the new one
 		{
 			add (original.getContact (i));
 		}
@@ -81,7 +81,7 @@ public class AddressBook
 	 */
 	public void add (Contact c)
 	{
-		addressBook.add (c);
+		addressBook.add (c); //adds the contact passed in to the array list
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class AddressBook
 	 */
 	public void remove (int i)
 	{
-		addressBook.remove (i);
+		addressBook.remove (i); // removes the contact from the array list from the given position
 	}
 
 	/**
@@ -109,8 +109,8 @@ public class AddressBook
 
 	public String get (int i)
 	{
-		String s = addressBook.get (i).toString ( );
-		return s;
+		String s = addressBook.get (i).toString ( ); //gets the toString of the contact
+		return s; //returns it
 	}
 
 	/**
@@ -122,8 +122,8 @@ public class AddressBook
 
 	public Contact getContact (int i)
 	{
-		Contact c = new Contact (addressBook.get (i));
-		return c;
+		Contact c = new Contact (addressBook.get (i)); //gets the contact object from the given position
+		return c; //returns the object
 	}
 
 	/**
@@ -137,7 +137,7 @@ public class AddressBook
 
 	public int size ( )
 	{
-		return addressBook.size ( );
+		return addressBook.size ( ); //returns the size of the array list
 	}
 
 	/**
@@ -151,7 +151,7 @@ public class AddressBook
 
 	public void setOwnerName (String name)
 	{
-		owner.setName (name);
+		owner.setName (name); //sets the name of the owner
 	}
 
 	/**
@@ -166,7 +166,7 @@ public class AddressBook
 
 	public String getOwnerName ( )
 	{
-		return owner.getName ( );
+		return owner.getName ( ); //gets the name of the owner
 	}
 
 	/**
@@ -183,7 +183,7 @@ public class AddressBook
 
 		String output = null;
 
-		if (addressBook.size ( ) > 0)
+		if (addressBook.size ( ) > 0) //formats all the contacts from the arraylist to a neat string
 		{
 			output = "\nFull Contact List: \n\n";
 
@@ -206,7 +206,7 @@ public class AddressBook
 	 * 
 	 */
 
-	public void fillAddressBook ( )
+	public void fillAddressBook ( ) 
 	{
 
 		JFileChooser fileChooser = new JFileChooser ("ContactData");
@@ -219,14 +219,14 @@ public class AddressBook
 		File fileIn;
 		Scanner file;
 
-		if (button == JFileChooser.APPROVE_OPTION)
+		if (button == JFileChooser.APPROVE_OPTION) //if they selected a file
 		{
 			try
 			{
-				fileIn = fileChooser.getSelectedFile ( );
+				fileIn = fileChooser.getSelectedFile ( ); //opens file chosen
 				file = new Scanner (fileIn);
 
-				while (file.hasNext ( ))
+				while (file.hasNext ( )) //while there is stuff in the file it will read from it
 				{
 					String str = file.nextLine ( );
 					String [ ] fields = str.split ("\\|");
@@ -281,7 +281,7 @@ public class AddressBook
 		{
 			try
 			{
-				fileIn = fileChooser.getSelectedFile ( );
+				fileIn = fileChooser.getSelectedFile ( ); //saves the file to the file chosen
 				PrintWriter pw = new PrintWriter (fileIn);
 
 				for (int i = 0; i < addressBook.size ( ); i++ )
@@ -291,9 +291,9 @@ public class AddressBook
 									addressBook.get (i).getState ( ) + "|" + addressBook.get (i).getZip ( ) + "|" +
 									addressBook.get (i).getPhone ( ) + "|" + addressBook.get (i).getEmail ( ) + "|" +
 									addressBook.get (i).getPhotoName ( ) + "|" + addressBook.get (i).getPhotoPath ( ));
-				}
+				} //writes information to the file.
 
-				pw.close ( );
+				pw.close ( ); //close file
 			}
 			catch (Exception e)
 			{
@@ -314,7 +314,7 @@ public class AddressBook
 
 	public void addAContact ( )
 	{
-		add (addContactInfo ( ));
+		add (addContactInfo ( ));  //calls add contact info for the user to enter the info
 		System.out.println ("Contact Added!\n\n");
 
 	}
@@ -389,7 +389,7 @@ public class AddressBook
 		String name = input.nextLine ( ).toUpperCase ( );
 		boolean found = true;
 
-		for (int i = 0; i < addressBook.size ( ); i++ )
+		for (int i = 0; i < addressBook.size ( ); i++ ) //verifies that the given integer exists in the arraylist
 		{
 			if (addressBook.get (i).getName ( ).toUpperCase ( ).equals (name))
 			{
@@ -427,11 +427,11 @@ public class AddressBook
 		String name = input.nextLine ( ).toUpperCase ( );
 		boolean found = true;
 
-		for (int i = 0; i < addressBook.size ( ); i++ )
+		for (int i = 0; i < addressBook.size ( ); i++ ) //verifies if it exists
 		{
 			if (addressBook.get (i).getName ( ).toUpperCase ( ).equals (name))
 			{
-				addressBook.remove (i);
+				addressBook.remove (i); //removes the contact
 				found = true;
 				System.out.println ("Contact Removed!\n\n");
 			}
@@ -500,7 +500,7 @@ public class AddressBook
 			{
 				System.out.println ("Contact Found!\n\n");
 				found = true;
-				System.out.println (addressBook.get (i).toString ( ) + "\n\n");
+				System.out.println (addressBook.get (i).toString ( ) + "\n\n");  //gets the tostring from the given contact
 
 			}
 			else
@@ -532,13 +532,13 @@ public class AddressBook
 
 		if (search.equals ("FAMILY") || search.equals ("CHURCH") || search.equals ("FRIEND") ||
 						search.equals ("BUSINESSCOLLEAGUE") ||
-						search.equals ("SERVICEPERSON") || search.equals ("CUSTOMER") || search.equals ("OTHER"))
+						search.equals ("SERVICEPERSON") || search.equals ("CUSTOMER") || search.equals ("OTHER")) //checks to see if it is a valid type
 		{
 			for (int i = 0; i < addressBook.size ( ); i++ )
 			{
 				if (addressBook.get (i).getType ( ).equals (search))
 				{
-					System.out.println (addressBook.get (i) + "\n\n");
+					System.out.println (addressBook.get (i) + "\n\n");  //gets tostring
 				}
 			}
 		}
@@ -565,11 +565,11 @@ public class AddressBook
 
 		String search = input.toUpperCase ( );
 
-		if (search.length ( ) < 6 && search.length ( ) > 0)
+		if (search.length ( ) < 6 && search.length ( ) > 0) //checks to make sure that the zip is the right size
 		{
 			for (int i = 0; i < addressBook.size ( ); i++ )
 			{
-				if (addressBook.get (i).getZip ( ).equals (search))
+				if (addressBook.get (i).getZip ( ).equals (search)) //checks to see if thy zip is equal
 				{
 					System.out.println (addressBook.get (i) + "\n\n");
 				}
@@ -591,11 +591,11 @@ public class AddressBook
 	 */
 	public void sortByName ( )
 	{
-		Collections.sort (addressBook, new Comparator <Contact> ( )
+		Collections.sort (addressBook, new Comparator <Contact> ( ) //.sort method will automatically sort for us
 		{
-			public int compare (Contact c1, Contact c2)
+			public int compare (Contact c1, Contact c2) //compares two contacts
 			{
-				return Integer.valueOf (c1.getName ( ).compareTo (c2.getName ( )));
+				return Integer.valueOf (c1.getName ( ).compareTo (c2.getName ( ))); //compares name
 			}
 		});
 	}
