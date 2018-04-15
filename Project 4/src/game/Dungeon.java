@@ -1,5 +1,14 @@
 package game;
-
+/**
+ * ---------------------------------------------------------------------------
+ * File name: Dungeon.java
+ * Project name: Project 4
+ * ---------------------------------------------------------------------------
+ * Creator's name and email: Shupe Ryan, shuper@etsu.edu
+ * Course:  CSCI 1260
+ * Creation Date: Apr 13, 2018
+ * ---------------------------------------------------------------------------
+ */
 import java.util.Random;
 
 public class Dungeon
@@ -50,15 +59,7 @@ public class Dungeon
 
 				if (roomString.contains ("M") && roomString.contains ("I"))
 				{
-					int i = rand.nextInt (2) + 1;
-					if (i == 1)
-					{
-						roomString = "|_M_I|";
-					}
-					else
-					{
-						roomString = "|_I_M|";
-					}
+						roomString = "|_M_I|";		
 				}
 				else if (roomString.contains ("M"))
 				{

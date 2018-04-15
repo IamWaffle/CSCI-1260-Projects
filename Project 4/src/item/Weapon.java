@@ -1,5 +1,14 @@
 package item;
-
+/**
+ * ---------------------------------------------------------------------------
+ * File name: Weapon.java
+ * Project name: Project 4
+ * ---------------------------------------------------------------------------
+ * Creator's name and email: Shupe Ryan, shuper@etsu.edu
+ * Course:  CSCI 1260
+ * Creation Date: Apr 13, 2018
+ * ---------------------------------------------------------------------------
+ */
 public class Weapon
 {
 

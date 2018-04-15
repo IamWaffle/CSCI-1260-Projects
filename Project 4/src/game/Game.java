@@ -1,16 +1,27 @@
 package game;
 
+/**
+ * ---------------------------------------------------------------------------
+ * File name: Game.java
+ * Project name: Project 4
+ * ---------------------------------------------------------------------------
+ * Creator's name and email: Shupe Ryan, shuper@etsu.edu
+ * Course: CSCI 1260
+ * Creation Date: Apr 13, 2018
+ * ---------------------------------------------------------------------------
+ */
 import java.util.Random;
+import Exception.*;
 import item.*;
 import mob.*;
 
 public class Game
 {
 
-	Dungeon	gameDungeon	= new Dungeon ( );
-	Player	player		= new Player ( );
+	Dungeon		gameDungeon	= new Dungeon ( );
+	Participant	player		= new Player ( );
 
-	int		playerLocation;
+	int			playerLocation;
 
 	public Game ( )
 	{
@@ -52,7 +63,8 @@ public class Game
 	public String toString ( )
 	{
 		String output = "";
-		if(getPlayerLocation() < getDungeonSize()) {
+		if (getPlayerLocation ( ) < getDungeonSize ( ))
+		{
 			if (getPlayerLocation ( ) == 0)
 			{
 				output = playerString (0);
@@ -98,22 +110,28 @@ public class Game
 				output = playerString (10);
 			}
 		}
-		
-		else if(getPlayerLocation() >= getDungeonSize()){
+
+		if (getPlayerLocation ( ) >= getDungeonSize ( ))
+		{
 			output = "Victory!";
 		}
 
 		return output;
 	}
 
-	public String playerString (int pos)
+	private String playerString (int pos)
 	{
 		String output = "";
 		for (int i = 0; i < gameDungeon.dungeonSize; i++ )
 		{
 			if (i == pos)
 			{
-				if (gameDungeon.dungeon [i].contains ("M"))
+				if (gameDungeon.dungeon [i].contains ("M") && gameDungeon.dungeon [i].contains ("I"))
+				{
+					output += gameDungeon.dungeon [i].substring (0, 1) + "P" +
+									gameDungeon.dungeon [i].substring (gameDungeon.dungeon [i].indexOf ("M"), 6);
+				}
+				else if (gameDungeon.dungeon [i].contains ("M"))
 				{
 					output += gameDungeon.dungeon [i].substring (0, 1) + "P" +
 									gameDungeon.dungeon [i].substring (gameDungeon.dungeon [i].indexOf ("M"), 6);
@@ -136,28 +154,98 @@ public class Game
 		return output;
 	}
 
+	public String fight ( )
+	{
+		String output = "";
+		Participant monster = createMonster ( );
+
+		output = monster.toString ( );
+		return output;
+	}
+
 	public void move (String direction) throws Exception
 	{
 		String move = direction.toLowerCase ( );
 
-		if (move.equals ("go east") || move.equals ("goeast") || move.equals ("east") && getPlayerLocation ( ) == 0)
+		if (move.equals ("go west") || move.equals ("gowest") || move.equals ("west") && getPlayerLocation ( ) == 0)
 		{
-			throw new Exception ("Player cannot go east!\n");
+			throw new Exception ("Sorry, but I can't go in that direction!\n");
 		}
 		else if (move.equals ("go east") || move.equals ("goeast") ||
 						move.equals ("east") && getPlayerLocation ( ) >= 0)
 		{
-			setPlayerLocation ( -1);
+			setPlayerLocation ( +1);
+			if (monsterCheck ( ))
+			{
+				throw new MonsterException ("Monster is here!\n");
+			}
+			if (itemCheck ( ))
+			{
+				throw new ItemException ("Item in room!\n");
+			}
 		}
 		else if (move.equals ("go west") || move.equals ("gowest") ||
 						move.equals ("west") && getPlayerLocation ( ) >= 0)
 		{
-			setPlayerLocation ( +1);
+			setPlayerLocation ( -1);
 		}
 		else
 		{
-			throw new Exception ("Invalid direction!\n");
+			throw new Exception ("Sorry, but I can't go in that direction!\n");
 		}
+
+	}
+
+	public boolean monsterCheck ( )
+	{
+		boolean check;
+		if (gameDungeon.dungeon [getPlayerLocation ( )].toString ( ).contains ("M"))
+		{
+			check = true;
+		}
+		else
+		{
+			check = false;
+		}
+		return check;
+	}
+
+	public boolean itemCheck ( )
+	{
+		boolean check;
+		if (gameDungeon.dungeon [getPlayerLocation ( )].toString ( ).contains ("I"))
+		{
+			check = true;
+		}
+		else
+		{
+			check = false;
+		}
+		return check;
+	}
+
+	private Participant createMonster ( )
+	{
+		Random rand = new Random ( );
+		int i = rand.nextInt (3) + 1;
+		Participant monster = null;
+		if (i == 0)
+		{
+			monster = new Cyclops ( );
+		}
+		else if (i == 1)
+		{
+			monster = new Dragon ( );
+		}
+		else if (i == 2)
+		{
+			monster = new Ogre ( );
+		}
+		else
+		{
+			monster = new Cyclops ( );
+		}
+		return monster;
 
 	}
 

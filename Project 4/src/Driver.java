@@ -1,11 +1,16 @@
 import java.util.Scanner;
-import game.Dungeon;
+import Exception.*;
 import game.Game;
-import item.Stick;
-import item.Sword;
-import item.Weapon;
-import mob.*;
-
+/**
+ * ---------------------------------------------------------------------------
+ * File name: Driver.java
+ * Project name: Project 4
+ * ---------------------------------------------------------------------------
+ * Creator's name and email: Shupe Ryan, shuper@etsu.edu
+ * Course:  CSCI 1260
+ * Creation Date: Apr 13, 2018
+ * ---------------------------------------------------------------------------
+ */
 public class Driver
 {
 	static Game game;
@@ -31,7 +36,7 @@ public class Driver
 			{
 				if (game.toString ( ).equals ("Victory!"))
 				{
-					System.out.print ("Victory!\nDo you want to play again?: ");
+					System.out.print ("You have beaten the dungeon!\nDo you want to play again?: ");
 					if (input.nextLine ( ).toLowerCase ( ).equals ("n"))
 					{
 						playing = false;
@@ -45,7 +50,9 @@ public class Driver
 				else
 				{
 					System.out.println ("\n" + game.toString ( ));
+					System.out.println ("Player Health: " + game.getPlayerHealth ( ));
 					move ( );
+					
 				}
 			}
 			while (playing);
@@ -77,9 +84,16 @@ public class Driver
 		{
 			try
 			{
-				System.out.print ("Which direction do you want to go?: ");
-				game.move (in.nextLine ( ));
+				
+				System.out.print ("Which direction do you want to go?: ");			
+				game.move (in.nextLine ( ));		
 				move = true;
+			}
+			catch(MonsterException e) {
+				System.out.println (e.getMessage ( ));
+				System.out.println (game.fight());
+				System.out.println(game.toString ( ));
+				System.out.println ("Player Health: " + game.getPlayerHealth ( ));
 			}
 			catch (Exception e)
 			{
