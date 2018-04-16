@@ -24,25 +24,13 @@ public class Player extends Participant
 		super ( );
 		setHealth (100);
 		hasWeapon = false;
-		setDamage (10);
+		setDamage (5);
 	}
 
 	public Player (String name, int health, int damage)
 	{
 		super (name, health, damage);
 	}
-
-	@Override
-	public void setName (String name)
-	{
-		this.name = name;
-	}
-
-	public void setDamage (int damage)
-	{
-		this.damage = damage;
-	}
-
 	// returns if the attacker hit or missed
 	public boolean attack ( )
 	{
@@ -59,11 +47,6 @@ public class Player extends Participant
 			hit = true;
 		}
 		return hit;
-	}
-
-	public void setHealth (int health)
-	{
-		this.health = health;
 	}
 
 	public boolean hasWeapon ( )

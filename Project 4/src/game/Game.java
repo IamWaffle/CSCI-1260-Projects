@@ -52,7 +52,7 @@ public class Game
 
 	public int getDungeonSize ( )
 	{
-		return gameDungeon.getDungeonSize ( );
+		return gameDungeon.getDungeonSize ( ) - 1;
 	}
 
 	public String getPlayerName ( )
@@ -60,10 +60,11 @@ public class Game
 		return player.getName ( );
 	}
 
-	public String toString ( )
+	public String toString ( ) 
 	{
 		String output = "";
-		if (getPlayerLocation ( ) < getDungeonSize ( ))
+			
+		if (getPlayerLocation ( ) <= getDungeonSize ( ))
 		{
 			if (getPlayerLocation ( ) == 0)
 			{
@@ -110,13 +111,23 @@ public class Game
 				output = playerString (10);
 			}
 		}
-
-		if (getPlayerLocation ( ) >= getDungeonSize ( ))
-		{
-			output = "Victory!";
-		}
-
 		return output;
+	}
+
+	/**
+	 * Enter method description here         
+	 *
+	 * <hr>
+	 * Date created: Apr 16, 2018
+	 *
+	 * <hr>
+	 */
+	public void positionCheck ( ) throws Exception
+	{
+		if(getPlayerLocation ( ) > getDungeonSize ( )) {
+			throw new VictoryException("Victory!");
+		}
+		
 	}
 
 	private String playerString (int pos)
@@ -156,12 +167,47 @@ public class Game
 
 	public String fight ( )
 	{
-		String output = "";
 		Participant monster = createMonster ( );
+		String output = "Monster Encountered: \n" + monster.toString ( ) + "\n\nThe fight begins...\n\t";
+		boolean dead = false;
 
-		output = monster.toString ( );
+		while(!dead) {
+			if (monster.attack ( ))
+			{
+				player.setHealth (getPlayerHealth ( ) - monster.getDamage ( ));
+				output += player.getName ( ) + " was hit by the " + monster.getName ( )+". " + player.getName ( ) + "'s Health: " +
+								player.getHealth ( ) + "\n\t";
+				if(player.getHealth ( ) == 0) 
+				{
+					output += "\n\t "+ player.getName ( ) + "has been killed...\n";
+					dead = true;
+				}
+			}
+			else
+			{
+				output += monster.getName ( ) + " has missed " + player.getName ( ) + ". " + player.getName ( ) + "'s Health: " +
+								player.getHealth ( ) + "\n\t";
+			}
+			if (player.attack ( ))
+			{
+				monster.setHealth (monster.getHealth ( ) - player.getDamage ( ));
+				output += monster.getName ( ) + " was hit by " + player.getName ( ) + ". " + monster.getName ( ) + "'s Health: " +
+								monster.getHealth ( ) + "\n\t";
+				if(monster.getHealth ( ) == 0) 
+				{
+					output += "\n\t The " + monster.getName ( ) + " has been killed...\n";
+					dead = true;
+				}
+			}
+			else
+			{
+				output += player.getName ( ) + " has missed " + monster.getName ( ) +". " + monster.getName ( ) + "'s Health: " +
+								monster.getHealth ( ) + "\n\t";;
+			}
+		}	
 		return output;
 	}
+
 
 	public void move (String direction) throws Exception
 	{
@@ -174,15 +220,10 @@ public class Game
 		else if (move.equals ("go east") || move.equals ("goeast") ||
 						move.equals ("east") && getPlayerLocation ( ) >= 0)
 		{
+			positionCheck ( );
 			setPlayerLocation ( +1);
-			if (monsterCheck ( ))
-			{
-				throw new MonsterException ("Monster is here!\n");
-			}
-			if (itemCheck ( ))
-			{
-				throw new ItemException ("Item in room!\n");
-			}
+			monsterCheck ( );
+			itemCheck();
 		}
 		else if (move.equals ("go west") || move.equals ("gowest") ||
 						move.equals ("west") && getPlayerLocation ( ) >= 0)
@@ -196,32 +237,23 @@ public class Game
 
 	}
 
-	public boolean monsterCheck ( )
+	public void monsterCheck ( ) throws Exception
 	{
-		boolean check;
+		
 		if (gameDungeon.dungeon [getPlayerLocation ( )].toString ( ).contains ("M"))
 		{
-			check = true;
+			throw new MonsterException ("Monster is here!\n");
 		}
-		else
-		{
-			check = false;
-		}
-		return check;
 	}
 
-	public boolean itemCheck ( )
+	public void itemCheck ( ) throws Exception
 	{
-		boolean check;
+
 		if (gameDungeon.dungeon [getPlayerLocation ( )].toString ( ).contains ("I"))
 		{
-			check = true;
+			throw new ItemException ("Item in room!\n");
 		}
-		else
-		{
-			check = false;
-		}
-		return check;
+
 	}
 
 	private Participant createMonster ( )
@@ -248,10 +280,55 @@ public class Game
 		return monster;
 
 	}
+	
+	private Weapon createWeapon ( )
+	{
+		Random rand = new Random ( );
+		int i = rand.nextInt (3) + 1;
+		Weapon weapon = null;
+		if (i == 0)
+		{
+			weapon = new Stick ( );
+		}
+		else if (i == 1)
+		{
+			weapon = new Stone ( );
+		}
+		else if (i == 2)
+		{
+			weapon = new Sword ( );
+		}
+		else
+		{
+			weapon = new Stick ( );
+		}
+		return weapon;
+
+	}
 
 	private int getPlayerLocation ( )
 	{
 		return playerLocation;
+	}
+
+	/**
+	 * Enter method description here
+	 *
+	 * <hr>
+	 * Date created: Apr 16, 2018
+	 *
+	 * <hr>
+	 * 
+	 * @return
+	 */
+	public String pickupWeapon ( )
+	{
+		Weapon weapon = createWeapon ( );
+		player.setDamage (player.getDamage ( ) + weapon.getDmg ( ));
+		String output = player.getName ( ) + " picked up a " + weapon.getName ( ) + "!\n" +
+						player.getName ( ) + "'s damage is now: " + player.getDamage ( );
+
+		return output;
 	}
 
 }

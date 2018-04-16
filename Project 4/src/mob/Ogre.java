@@ -24,7 +24,7 @@ import java.util.Random;
 public class Ogre extends Participant
 {
 
-	public Ogre() {
+	public Ogre( ) {
 		super("Ogre", 20, 4);
 	}
 	

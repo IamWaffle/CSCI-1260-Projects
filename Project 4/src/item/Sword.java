@@ -3,6 +3,6 @@ package item;
 public class Sword extends Weapon{
 	
 	public Sword() {
-		super("Sword", 10, 15);
+		super("Sword", 10);
 	}
 }

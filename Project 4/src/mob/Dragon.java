@@ -24,7 +24,7 @@ import java.util.Random;
 public class Dragon extends Participant
 {
 
-	public Dragon() {
+	public Dragon( ) {
 		super("Dragon", 20, 4);
 	}
 	

@@ -15,14 +15,17 @@ public class Driver
 {
 	static Game game;
 
+	static boolean mainGame = true;
+	static boolean playing = true;
+	static Scanner input = new Scanner (System.in);
+	
 	public static void main (String [ ] args)
 	{
-		boolean mainGame = true;
-		do
-		{
-			Scanner input = new Scanner (System.in);
-			boolean playing = true;
-
+		Game game;
+		boolean playing = true;
+		Scanner input = new Scanner (System.in);
+		
+		
 			System.out.println (Welcome ( ));
 			input.nextLine ( );
 			game = new Game ( );
@@ -30,35 +33,52 @@ public class Driver
 			System.out.print ("What is the name of the player?");
 			game.setPlayerName (input.nextLine ( ));
 
-			System.out.println ("Player Name: " + game.getPlayerName ( ));
-
-			do
-			{
-				if (game.toString ( ).equals ("Victory!"))
-				{
-					System.out.print ("You have beaten the dungeon!\nDo you want to play again?: ");
-					if (input.nextLine ( ).toLowerCase ( ).equals ("n"))
-					{
-						playing = false;
-						mainGame = false;
-					}
-					else
-					{
-						playing = false;
-					}
-				}
-				else
+			do {
+				try
 				{
 					System.out.println ("\n" + game.toString ( ));
-					System.out.println ("Player Health: " + game.getPlayerHealth ( ));
-					move ( );
+					System.out.println (game.getPlayerName ( ) + "'s Health: " + game.getPlayerHealth ( ));
+					game.positionCheck();
+					System.out.print ("Which direction do you want to go?: ");	
+					game.move (input.nextLine ( ));		
+				}
+				catch (VictoryException ve)
+				{
+					System.out.println ("The game is over!\n\nYou have defeated the dungeon and all the monsters!");
+					System.exit (-1);
+				}
+				catch(MonsterException me) {
+					System.out.println (me.getMessage ( ));
+					System.out.println (game.fight());
+					try
+					{
+						game.itemCheck ( );
+					}
+					catch (ItemException ie)
+					{
+						System.out.println (ie.getMessage ( ));
+						System.out.println (game.pickupWeapon());
+					}
+					catch (Exception e)
+					{
+
+					}
+					System.out.println(game.toString ( ));
 					
+					System.out.println (game.getPlayerName ( ) + "'s Health: " + game.getPlayerHealth ( ));
+				}
+				catch (ItemException ie)
+				{
+					System.out.println (ie.getMessage ( ));
+					System.out.println (game.pickupWeapon());
+				}
+				catch (Exception e)
+				{
+					System.out.print (e.getMessage ( ));
+
 				}
 			}
 			while (playing);
-
-		}
-		while (mainGame);
 	}
 
 	public static String Welcome ( )
@@ -76,30 +96,4 @@ public class Driver
 		return output;
 	}
 
-	public static void move ( )
-	{
-		Scanner in = new Scanner (System.in);
-		boolean move = false;
-		while ( !move)
-		{
-			try
-			{
-				
-				System.out.print ("Which direction do you want to go?: ");			
-				game.move (in.nextLine ( ));		
-				move = true;
-			}
-			catch(MonsterException e) {
-				System.out.println (e.getMessage ( ));
-				System.out.println (game.fight());
-				System.out.println(game.toString ( ));
-				System.out.println ("Player Health: " + game.getPlayerHealth ( ));
-			}
-			catch (Exception e)
-			{
-				System.out.print (e.getMessage ( ));
-
-			}
-		}
-	}
 }

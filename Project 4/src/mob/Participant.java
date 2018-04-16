@@ -28,11 +28,16 @@ public abstract class Participant
 		setHealth (health);
 		setDamage (damage);
 	}
-	public abstract boolean attack();
+	public abstract boolean attack( );
 	
 	public void setHealth (int health)
 	{
-		this.health = health;
+		if (health < 0) {
+			this.health = 0;
+		}else {
+			this.health = health;
+		}
+		
 	}
 
 	public void setDamage (int damage)
@@ -70,7 +75,7 @@ public abstract class Participant
 		return damage;
 	}
 	
-	public String toString() {
+	public String toString( ) {
 		String output = "Type: " + getName() + 
 						"\nHealth: " + getHealth() + 
 						"\nDamage: " + getDamage();

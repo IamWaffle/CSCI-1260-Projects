@@ -23,6 +23,6 @@ package item;
 public class Stone extends Weapon
 {
 	public Stone() {
-		super("Stone", 2, 10);
+		super("Stone", 2);
 	}	
 }

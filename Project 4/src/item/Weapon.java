@@ -14,20 +14,19 @@ public class Weapon
 
 	String	name;
 	int		damage;
-	int		durability;
 
 	public Weapon ( )
 	{
 		setName ("Unknown");
 		setDmg (0);
-		setDurability (0);
+
 	}
 
-	public Weapon (String name, int damage, int durability)
+	public Weapon (String name, int damage)
 	{
 		setName (name);
 		setDmg (damage);
-		setDurability (durability);
+
 	}
 
 	public void setName (String name)
@@ -40,29 +39,12 @@ public class Weapon
 		this.damage = damage;
 	}
 
-	public void setDurability (int durability)
-	{
-		this.durability = durability;
-	}
+
 
 	public String toString() {
 		String output = "Name: " + getName() + 
-						"\nDamage: " + getDmg() +
-						"\nDurability: " + getDurability();
+						"\nDamage: " + getDmg();
 		return output;
-	}
-
-	/**
-	 * Enter method description here
-	 *
-	 * <hr>
-	 * Date created: Apr 12, 2018
-	 *
-	 * <hr>
-	 */
-	private int getDurability ( )
-	{
-		return durability;
 	}
 
 	/**
@@ -75,7 +57,7 @@ public class Weapon
 	 * 
 	 * @return
 	 */
-	private int getDmg ( )
+	public int getDmg ( )
 	{
 		return damage;
 	}
@@ -90,7 +72,7 @@ public class Weapon
 	 * 
 	 * @return
 	 */
-	private String getName ( )
+	public String getName ( )
 	{
 		return name;
 	}

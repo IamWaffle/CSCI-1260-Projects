@@ -1,18 +1,18 @@
 /**
  * ---------------------------------------------------------------------------
- * File name: MonsterException.java
+ * File name: VictoryException.java
  * Project name: Project 4
  * ---------------------------------------------------------------------------
  * Creator's name and email: Shupe Ryan, shuper@etsu.edu
- * Course: CSCI 1260
- * Creation Date: Apr 15, 2018
+ * Course:  CSCI 1260
+ * Creation Date: Apr 16, 2018
  * ---------------------------------------------------------------------------
  */
 
 package Exception;
 
 /**
- * Exception for when a monster is found in the room
+ * Exception for victory
  *
  * <hr>
  * Date created: Apr 15, 2018
@@ -20,9 +20,9 @@ package Exception;
  * 
  * @author Ryan Shupe
  */
-public class MonsterException extends Exception
+public class VictoryException extends Exception
 {
-	public MonsterException (String message)
+	public VictoryException (String message)
 	{
 		super (message);
 	}
