@@ -1,38 +1,37 @@
 /**
  * ---------------------------------------------------------------------------
- * File name: Stone.java
+ * File name: HealthException.java
  * Project name: Project 4
  * ---------------------------------------------------------------------------
  * Creator's name and email: Shupe Ryan, shuper@etsu.edu
  * Course:  CSCI 1260
- * Creation Date: Apr 12, 2018
+ * Creation Date: Apr 19, 2018
  * ---------------------------------------------------------------------------
  */
 
-package item;
+package Exception;
 
 
 /**
- * Create Stone Weapon
+ * Create own HealthException so it can be thrown/caught when the player finds a healing pot 
  *
  * <hr>
- * Date created: Apr 12, 2018
+ * Date created: Apr 19, 2018
  * <hr>
  * @author Ryan Shupe
  */
-public class Stone extends Item
+public class HealthException extends Exception
 {
-	
 	/**
-	 * Constructor to fill name and damage from super class
+	 * Constructor to full super class constructor        
 	 *
 	 * <hr>
-	 * Date created: Apr 19, 2018
 	 *
 	 * 
+	 * @param message
 	 */
-	public Stone ( )
+	public HealthException(String message) 
 	{
-		super ("Stone", 3);
+		super(message);
 	}
 }

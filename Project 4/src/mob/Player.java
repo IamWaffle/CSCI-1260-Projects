@@ -13,12 +13,30 @@ package mob;
 import java.util.Random;
 import item.*;
 
+
+/**
+ * create a player type because thats necessary 
+ *
+ * <hr>
+ * Date created: Apr 19, 2018
+ * <hr>
+ * @author Ryan Shupe
+ * 
+ */
 public class Player extends Participant
 {
 
 	boolean	hasWeapon;
-	Weapon	weapon;
 
+	
+	/**
+	 * Constructor     default  new player   
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018 
+	 *
+	 * 
+	 */
 	public Player ( )
 	{
 		super ( );
@@ -27,11 +45,16 @@ public class Player extends Participant
 		setDamage (5);
 	}
 
-	public Player (String name, int health, int damage)
-	{
-		super (name, health, damage);
-	}
-	// returns if the attacker hit or missed
+	
+	/**
+	 * boolean to tell if the player landed its attack or not 10% chance of a miss       
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018 
+	 *
+	 * <hr>
+	 * @return hit
+	 */
 	public boolean attack ( )
 	{
 		Random rand = new Random ( );
@@ -49,30 +72,18 @@ public class Player extends Participant
 		return hit;
 	}
 
+	/**
+	 * returns the boolean if the player has a weapon or not        
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018
+	 *
+	 * <hr>
+	 * @return hasWeapon
+	 */
 	public boolean hasWeapon ( )
 	{
 		return hasWeapon;
-	}
-
-	public void hasWeapon (boolean wep)
-	{
-		Random rand = new Random ( );
-		int weaponNumber = rand.nextInt (3) + 1;
-
-		if (weaponNumber == 1)
-		{
-			weapon = new Sword ( );
-		}
-		else if (weaponNumber == 2)
-		{
-			weapon = new Stick ( );
-		}
-		else if (weaponNumber == 3)
-		{
-			weapon = new Stone ( );
-		}
-
-		hasWeapon = wep;
 	}
 
 }

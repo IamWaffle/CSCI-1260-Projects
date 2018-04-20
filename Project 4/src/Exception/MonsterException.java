@@ -12,16 +12,24 @@
 package Exception;
 
 /**
- * Exception for when a monster is found in the room
+ * Create own MonsterException so it can be thrown/caught when the player finds a monster
  *
  * <hr>
- * Date created: Apr 15, 2018
+ * Date created: Apr 17, 2018
  * <hr>
- * 
  * @author Ryan Shupe
  */
 public class MonsterException extends Exception
 {
+	/**
+	 * Constructor to full super class constructor        
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018 
+	 *
+	 * 
+	 * @param message
+	 */
 	public MonsterException (String message)
 	{
 		super (message);

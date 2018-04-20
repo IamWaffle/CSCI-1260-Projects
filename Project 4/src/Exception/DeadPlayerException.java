@@ -1,38 +1,39 @@
 /**
  * ---------------------------------------------------------------------------
- * File name: Stone.java
+ * File name: DeadPlayerException.java
  * Project name: Project 4
  * ---------------------------------------------------------------------------
  * Creator's name and email: Shupe Ryan, shuper@etsu.edu
  * Course:  CSCI 1260
- * Creation Date: Apr 12, 2018
+ * Creation Date: Apr 17, 2018
  * ---------------------------------------------------------------------------
  */
 
-package item;
+package Exception;
 
 
 /**
- * Create Stone Weapon
+ * Create own DeadPlayerException so it can be thrown/caught when the player dies 
  *
  * <hr>
- * Date created: Apr 12, 2018
+ * Date created: Apr 17, 2018
  * <hr>
  * @author Ryan Shupe
  */
-public class Stone extends Item
+public class DeadPlayerException extends Exception
 {
 	
 	/**
-	 * Constructor to fill name and damage from super class
+	 * Constructor to full super class constructor        
 	 *
 	 * <hr>
-	 * Date created: Apr 19, 2018
+	 * Date created: Apr 19, 2018 
 	 *
 	 * 
+	 * @param message
 	 */
-	public Stone ( )
+	public DeadPlayerException (String message)
 	{
-		super ("Stone", 3);
+		super (message);
 	}
 }

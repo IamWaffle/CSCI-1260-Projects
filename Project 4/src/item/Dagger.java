@@ -1,11 +1,11 @@
 /**
  * ---------------------------------------------------------------------------
- * File name: Stone.java
+ * File name: Shield.java
  * Project name: Project 4
  * ---------------------------------------------------------------------------
  * Creator's name and email: Shupe Ryan, shuper@etsu.edu
  * Course:  CSCI 1260
- * Creation Date: Apr 12, 2018
+ * Creation Date: Apr 19, 2018
  * ---------------------------------------------------------------------------
  */
 
@@ -13,26 +13,27 @@ package item;
 
 
 /**
- * Create Stone Weapon
+ * To create a stick weapon
  *
  * <hr>
- * Date created: Apr 12, 2018
+ * Date created: Apr 19, 2018
  * <hr>
  * @author Ryan Shupe
  */
-public class Stone extends Item
+public class Dagger extends Item
 {
 	
 	/**
-	 * Constructor to fill name and damage from super class
+	 * Constructor to fill name and damage from super class     
 	 *
 	 * <hr>
-	 * Date created: Apr 19, 2018
+	 * Date created: Apr 19, 2018 
 	 *
 	 * 
 	 */
-	public Stone ( )
+	public Dagger ( )
 	{
-		super ("Stone", 3);
+		super ("Dagger", 6);
 	}
+
 }

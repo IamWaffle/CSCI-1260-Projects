@@ -11,12 +11,30 @@ package game;
  */
 import java.util.Random;
 
+
+/**
+ * Enter type purpose here
+ *
+ * <hr>
+ * Date created: Apr 19, 2018
+ * <hr>
+ * @author Ryan Shupe
+ */
 public class Dungeon
 {
 
 	public int	dungeonSize;
 	String [ ]	dungeon;
 
+	
+	/**
+	 * Constructor        
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018 
+	 *
+	 * 
+	 */
 	public Dungeon ( )
 	{
 		setDungeonSize ( );
@@ -24,6 +42,14 @@ public class Dungeon
 		fillDungeon ( );
 	}
 
+	/**
+	 * Fills the dungeon with monsters and one item        
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018
+	 *
+	 * <hr>
+	 */
 	public void fillDungeon ( )
 	{
 		boolean itemSpawn = false;
@@ -45,6 +71,10 @@ public class Dungeon
 				if (random <= 50)
 				{
 					roomString += "M";
+				}
+				if (random >= 85)
+				{
+					roomString += "H";
 				}
 				if ( !itemSpawn)
 				{
@@ -69,6 +99,10 @@ public class Dungeon
 				{
 					roomString = "|_I__|";
 				}
+				else if (roomString.contains ("H"))
+				{
+					roomString = "|_H__|";
+				}
 				else
 				{
 					roomString = "|____|";
@@ -81,17 +115,44 @@ public class Dungeon
 
 	}
 
+	/**
+	 * sets the dungeon size to anything between 5 and 10         
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018
+	 *
+	 * <hr>
+	 */
 	public void setDungeonSize ( )
 	{
 		Random rand = new Random ( );
 		dungeonSize = rand.nextInt (5) + 5;
 	}
 
+	/**
+	 * returns the dungeon size        
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018
+	 *
+	 * <hr>
+	 * @return dungeonSize
+	 */
 	public int getDungeonSize ( )
 	{
 		return dungeonSize;
 	}
 
+	/**
+	 * send the Dungeon in a format like this |___| |___|        
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018 
+	 *
+	 * <hr>
+	 * @return
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString ( )
 	{
 		String output = "Dungeon: \n";

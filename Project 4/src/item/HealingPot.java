@@ -1,11 +1,11 @@
 /**
  * ---------------------------------------------------------------------------
- * File name: Stone.java
+ * File name: HealingPot.java
  * Project name: Project 4
  * ---------------------------------------------------------------------------
  * Creator's name and email: Shupe Ryan, shuper@etsu.edu
  * Course:  CSCI 1260
- * Creation Date: Apr 12, 2018
+ * Creation Date: Apr 19, 2018
  * ---------------------------------------------------------------------------
  */
 
@@ -13,26 +13,28 @@ package item;
 
 
 /**
- * Create Stone Weapon
+ * Enter type purpose here
  *
  * <hr>
- * Date created: Apr 12, 2018
+ * Date created: Apr 19, 2018
  * <hr>
  * @author Ryan Shupe
  */
-public class Stone extends Item
-{
+public class HealingPot extends Item
+{	
 	
+
 	/**
-	 * Constructor to fill name and damage from super class
+	 * Constructor to fill name and damage/healing from super class
 	 *
 	 * <hr>
 	 * Date created: Apr 19, 2018
 	 *
 	 * 
 	 */
-	public Stone ( )
+	public HealingPot ( )
 	{
-		super ("Stone", 3);
+		super ("Healing Pot", 10);
 	}
+
 }

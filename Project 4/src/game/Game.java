@@ -15,6 +15,16 @@ import Exception.*;
 import item.*;
 import mob.*;
 
+
+/**
+ * The game class is going to be how the driver controls the game. Basically this is the brain of the whole thing.
+ *
+ * <hr>
+ * Date created: Apr 19, 2018
+ * <hr>
+ * @author Ryan Shupe
+ */
+
 public class Game
 {
 
@@ -23,16 +33,42 @@ public class Game
 
 	int			playerLocation;
 
+	/**
+	 * Constructor        
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018 
+	 *
+	 * 
+	 */
 	public Game ( )
 	{
 		setPlayerLocation (0);
 	}
 
+	/**
+	 * Sets the player name        
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018
+	 *
+	 * <hr>
+	 * @param name
+	 */
 	public void setPlayerName (String name)
 	{
 		player.setName (name);
 	}
 
+	/**
+	 * Sets the player location        
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018
+	 *
+	 * <hr>
+	 * @param loc
+	 */
 	public void setPlayerLocation (int loc)
 	{
 		if (playerLocation >= 0)
@@ -45,21 +81,86 @@ public class Game
 		}
 	}
 
+	/**
+	 * returns the player health         
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018
+	 *
+	 * <hr>
+	 * @return
+	 */
 	public int getPlayerHealth ( )
 	{
 		return player.getHealth ( );
 	}
+	
+	/**
+	 * method to set the player health         
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018
+	 *
+	 * <hr>
+	 * @param int health
+	 */
+	public void setPlayerHealth (int health)
+	{
+		player.setHealth (health);
+	}
 
+	/**
+	 * returns the player location        
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018
+	 *
+	 * <hr>
+	 * @return playerLocation
+	 */
+	private int getPlayerLocation ( )
+	{
+		return playerLocation;
+	}
+
+
+	/**
+	 * returns the dungeon size        
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018
+	 *
+	 * <hr>
+	 * @return
+	 */
 	public int getDungeonSize ( )
 	{
 		return gameDungeon.getDungeonSize ( ) - 1;
 	}
 
+	/**
+	 * returns the player name         
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018
+	 *
+	 * <hr>
+	 * @return
+	 */
 	public String getPlayerName ( )
 	{
 		return player.getName ( );
 	}
 
+	/**
+	 * Makes a String that has the dungeon and the player position.        
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018 
+	 *
+	 * <hr>
+	 * @return output
+	 */
 	public String toString ( ) 
 	{
 		String output = "";
@@ -115,12 +216,13 @@ public class Game
 	}
 
 	/**
-	 * Enter method description here         
+	 * checks to see if the player has beat the dungeon or not       
 	 *
 	 * <hr>
-	 * Date created: Apr 16, 2018
+	 * Date created: Apr 19, 2018
 	 *
 	 * <hr>
+	 * @throws Exception
 	 */
 	public void positionCheck ( ) throws Exception
 	{
@@ -130,6 +232,16 @@ public class Game
 		
 	}
 
+	/**
+	 * Creates a String containing the player in the cell of the dungeon         
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018
+	 *
+	 * <hr>
+	 * @param pos
+	 * @return output
+	 */
 	private String playerString (int pos)
 	{
 		String output = "";
@@ -152,6 +264,11 @@ public class Game
 					output += gameDungeon.dungeon [i].substring (0, 1) + "P" +
 									gameDungeon.dungeon [i].substring (gameDungeon.dungeon [i].indexOf ("I"), 6);
 				}
+				else if (gameDungeon.dungeon [i].contains ("H"))
+				{
+					output += gameDungeon.dungeon [i].substring (0, 1) + "P" +
+									gameDungeon.dungeon [i].substring (gameDungeon.dungeon [i].indexOf ("H"), 6);
+				}
 				else
 				{
 					output += gameDungeon.dungeon [i].substring (0, 2) + "P" + gameDungeon.dungeon [i].substring (3, 6);
@@ -165,7 +282,17 @@ public class Game
 		return output;
 	}
 
-	public String fight ( )
+	/**
+	 * This is where the player fighting the monster occurs. it updates health values and returns a string about the details of the fight.        
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018
+	 *
+	 * <hr>
+	 * @return
+	 * @throws Exception
+	 */
+	public String fight ( ) throws Exception
 	{
 		Participant monster = createMonster ( );
 		String output = "Monster Encountered: \n" + monster.toString ( ) + "\n\nThe fight begins...\n\t";
@@ -175,12 +302,20 @@ public class Game
 			if (monster.attack ( ))
 			{
 				player.setHealth (getPlayerHealth ( ) - monster.getDamage ( ));
-				output += player.getName ( ) + " was hit by the " + monster.getName ( )+". " + player.getName ( ) + "'s Health: " +
-								player.getHealth ( ) + "\n\t";
-				if(player.getHealth ( ) == 0) 
+				if (player.getHealth ( ) == 0)
 				{
-					output += "\n\t "+ player.getName ( ) + "has been killed...\n";
+					output += player.getName ( ) + " was hit by the " + monster.getName ( ) + ". " +
+									player.getName ( ) + "'s Health: " +
+									player.getHealth ( ) + "\n\t";
+					output += "\n\t " + player.getName ( ) + " has been killed...\n";
 					dead = true;
+					throw new DeadPlayerException(output);
+				}
+				else
+				{
+					output += player.getName ( ) + " was hit by the " + monster.getName ( ) + ". " +
+									player.getName ( ) + "'s Health: " +
+									player.getHealth ( ) + "\n\t";
 				}
 			}
 			else
@@ -188,7 +323,7 @@ public class Game
 				output += monster.getName ( ) + " has missed " + player.getName ( ) + ". " + player.getName ( ) + "'s Health: " +
 								player.getHealth ( ) + "\n\t";
 			}
-			if (player.attack ( ))
+			if (player.attack ( ) && player.getHealth ( ) > 0)
 			{
 				monster.setHealth (monster.getHealth ( ) - player.getDamage ( ));
 				output += monster.getName ( ) + " was hit by " + player.getName ( ) + ". " + monster.getName ( ) + "'s Health: " +
@@ -199,7 +334,7 @@ public class Game
 					dead = true;
 				}
 			}
-			else
+			else if(!player.attack ( ) && player.getHealth ( ) > 0)
 			{
 				output += player.getName ( ) + " has missed " + monster.getName ( ) +". " + monster.getName ( ) + "'s Health: " +
 								monster.getHealth ( ) + "\n\t";;
@@ -208,7 +343,16 @@ public class Game
 		return output;
 	}
 
-
+	/**
+	 * moves the player in a direction and checks for monsters or items.        
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018
+	 *
+	 * <hr>
+	 * @param direction
+	 * @throws Exception
+	 */
 	public void move (String direction) throws Exception
 	{
 		String move = direction.toLowerCase ( );
@@ -224,6 +368,7 @@ public class Game
 			setPlayerLocation ( +1);
 			monsterCheck ( );
 			itemCheck();
+			healthCheck( );
 		}
 		else if (move.equals ("go west") || move.equals ("gowest") ||
 						move.equals ("west") && getPlayerLocation ( ) >= 0)
@@ -237,6 +382,15 @@ public class Game
 
 	}
 
+	/**
+	 * Checks to see if a monster is in the cell the player is in         
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018
+	 *
+	 * <hr>
+	 * @throws Exception
+	 */
 	public void monsterCheck ( ) throws Exception
 	{
 		
@@ -246,6 +400,15 @@ public class Game
 		}
 	}
 
+	/**
+	 * Checks to see if an item is in the cell the player is in         
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018
+	 *
+	 * <hr>
+	 * @throws Exception
+	 */
 	public void itemCheck ( ) throws Exception
 	{
 
@@ -255,23 +418,50 @@ public class Game
 		}
 
 	}
+	/**
+	 * Checks to see if a healing pot is in the cell the player is in         
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018
+	 *
+	 * <hr>
+	 * @throws Exception
+	 */
+	public void healthCheck( ) throws Exception 
+	{
 
+		if (gameDungeon.dungeon [getPlayerLocation ( )].toString ( ).contains ("H"))
+		{
+			throw new HealthException ("Healing Pot in room!\n");
+		}
+
+	}
+	/**
+	 * Creates and returns a monster to fight        dragon is rareish because its overpowered
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018
+	 *
+	 * <hr>
+	 * @return monster
+	 */
 	private Participant createMonster ( )
 	{
 		Random rand = new Random ( );
-		int i = rand.nextInt (3) + 1;
+		int i = rand.nextInt (50) + 1;
 		Participant monster = null;
-		if (i == 0)
-		{
-			monster = new Cyclops ( );
-		}
-		else if (i == 1)
+		
+		if (i < 8)
 		{
 			monster = new Dragon ( );
 		}
-		else if (i == 2)
+		else if (i < 30)
 		{
 			monster = new Ogre ( );
+		}
+		else if (i <= 50)
+		{
+			monster = new Cyclops ( );
 		}
 		else
 		{
@@ -281,11 +471,20 @@ public class Game
 
 	}
 	
-	private Weapon createWeapon ( )
+	/**
+	 * Creates  and returns a weapon  1/4 chance for each one      
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018
+	 *
+	 * <hr>
+	 * @return weapon
+	 */
+	private Item createWeapon ( )
 	{
 		Random rand = new Random ( );
-		int i = rand.nextInt (3) + 1;
-		Weapon weapon = null;
+		int i = rand.nextInt (4) + 1;
+		Item weapon = null;
 		if (i == 0)
 		{
 			weapon = new Stick ( );
@@ -300,30 +499,25 @@ public class Game
 		}
 		else
 		{
-			weapon = new Stick ( );
+			weapon = new Dagger ( );
 		}
 		return weapon;
 
 	}
 
-	private int getPlayerLocation ( )
-	{
-		return playerLocation;
-	}
 
 	/**
-	 * Enter method description here
+	 * uses Create Weapon and adds the weapon damage onto the player damage         
 	 *
 	 * <hr>
-	 * Date created: Apr 16, 2018
+	 * Date created: Apr 19, 2018
 	 *
 	 * <hr>
-	 * 
-	 * @return
+	 * @return output
 	 */
 	public String pickupWeapon ( )
 	{
-		Weapon weapon = createWeapon ( );
+		Item weapon = createWeapon ( );
 		player.setDamage (player.getDamage ( ) + weapon.getDmg ( ));
 		String output = player.getName ( ) + " picked up a " + weapon.getName ( ) + "!\n" +
 						player.getName ( ) + "'s damage is now: " + player.getDamage ( );

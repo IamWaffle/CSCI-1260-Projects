@@ -11,17 +11,26 @@
 
 package Exception;
 
+
 /**
- * Exception for victory
+ * Create own VictoryException so it can be thrown/caught when the player wins the game
  *
  * <hr>
- * Date created: Apr 15, 2018
+ * Date created: Apr 17, 2018
  * <hr>
- * 
  * @author Ryan Shupe
  */
 public class VictoryException extends Exception
 {
+	/**
+	 * Constructor to full super class constructor        
+	 *
+	 * <hr>
+	 * Date created: Apr 19, 2018 
+	 *
+	 * 
+	 * @param message
+	 */
 	public VictoryException (String message)
 	{
 		super (message);
