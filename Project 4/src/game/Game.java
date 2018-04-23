@@ -28,16 +28,16 @@ import mob.*;
 public class Game
 {
 
-	Dungeon		gameDungeon	= new Dungeon ( );
-	Participant	player		= new Player ( );
+	private Dungeon		gameDungeon	= new Dungeon ( );
+	private Participant	player		= new Player ( );
 
-	int			playerLocation;
+	private int			playerLocation;
 
 	/**
-	 * Constructor        
+	 * Constructor
 	 *
 	 * <hr>
-	 * Date created: Apr 19, 2018 
+	 * Date created: Apr 19, 2018
 	 *
 	 * 
 	 */
@@ -245,7 +245,7 @@ public class Game
 	private String playerString (int pos)
 	{
 		String output = "";
-		for (int i = 0; i < gameDungeon.dungeonSize; i++ )
+		for (int i = 0; i < gameDungeon.getDungeonSize(); i++ )
 		{
 			if (i == pos)
 			{

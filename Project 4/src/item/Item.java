@@ -22,8 +22,8 @@ package item;
 public class Item
 {
 
-	String	name;
-	int		damage;
+	 protected String	name;
+	 protected int		damage;
 
 	/**
 	 * Constructor default

@@ -23,8 +23,8 @@ import java.util.Random;
 public class Dungeon
 {
 
-	public int	dungeonSize;
-	String [ ]	dungeon;
+	private int	dungeonSize;
+	 String [ ]	dungeon;
 
 	
 	/**
@@ -50,7 +50,7 @@ public class Dungeon
 	 *
 	 * <hr>
 	 */
-	public void fillDungeon ( )
+	private void fillDungeon ( )
 	{
 		boolean itemSpawn = false;
 		int roomNumber = 0;
@@ -123,7 +123,7 @@ public class Dungeon
 	 *
 	 * <hr>
 	 */
-	public void setDungeonSize ( )
+	private void setDungeonSize ( )
 	{
 		Random rand = new Random ( );
 		dungeonSize = rand.nextInt (5) + 5;
